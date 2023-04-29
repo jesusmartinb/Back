@@ -1,0 +1,33 @@
+@host = http://localhost:3000
+
+GET {{host}}/api/teachers?page=4
+
+
+###
+GET {{host}}/api/teachers/201
+
+
+
+###
+POST {{host}}/api/teachers
+Content-Type: application/json
+
+{
+    "first_name" : "daniel",
+    "last_name" : "colmenares",
+    "username" : "dcdager3",
+    "email" : "dcdage5@example.com"
+}
+###
+PUT {{host}}/api/teachers/201
+Content-Type: application/json
+
+{
+    "first_name" : "daniel",
+    "last_name" : "colmenares",
+    "username" : "dcdager13",
+    "email" : "dcdage50@example.com"
+}
+
+###
+DELETE {{host}}/api/teachers/191
