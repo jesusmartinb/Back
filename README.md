@@ -2,8 +2,8 @@
 
 # GET ALL TEACHERS
 
-GET https://teachers-groupb.herokuapp.com/teachers
-GET https://teachers-groupb.herokuapp.com/teachers?page=PAGINA
+GET https://teachers-groupb.herokuapp.com/api/teachers
+GET https://teachers-groupb.herokuapp.com/api/teachers?page=PAGINA
 
 # RESPONSE 
 {
@@ -29,7 +29,7 @@ GET https://teachers-groupb.herokuapp.com/teachers?page=PAGINA
     
  # GET TEAHCER BY ID
     
- GET https://teachers-groupb.herokuapp.com/teachers/TEACHERID
+ GET https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
  # RESPONSE
  
@@ -45,7 +45,7 @@ GET https://teachers-groupb.herokuapp.com/teachers?page=PAGINA
 
 # CREATE NEW TEACHER
 
-POST https://teachers-groupb.herokuapp.com/teachers
+POST https://teachers-groupb.herokuapp.com/api/teachers
 
 # REQUEST
 
@@ -68,7 +68,7 @@ POST https://teachers-groupb.herokuapp.com/teachers
  
  # UPDATE TEACHER
  
- PUT https://teachers-groupb.herokuapp.com/teachers/TEACHERID
+ PUT https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
  # REQUEST
  
@@ -91,7 +91,7 @@ POST https://teachers-groupb.herokuapp.com/teachers
 
 # DELETE TEACHER
 
-DELETE https://teachers-groupb.herokuapp.com/teachers/TEACHERID
+DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
  # RESPONSE 
 
