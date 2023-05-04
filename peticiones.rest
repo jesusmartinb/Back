@@ -31,3 +31,13 @@ Content-Type: application/json
 
 ###
 DELETE {{host}}/api/teachers/191
+
+###
+POST   {{host}}/api/mail
+Content-Type: application/json
+
+{
+  "destinatario": "danieldager@gmail.com",
+  "asunto": "TFM",
+  "cuerpo": "Este es un correo de teacherapp"
+}
