@@ -1,10 +1,12 @@
 @host = http://localhost:3000
 
-GET {{host}}/api/teachers?page=4
-
+GET {{host}}/api/teachers?page=2
 
 ###
-GET {{host}}/api/teachers/201
+GET {{host}}/api/teachers/map
+
+###
+GET {{host}}/api/teachers/6
 
 
 
@@ -13,24 +15,41 @@ POST {{host}}/api/teachers
 Content-Type: application/json
 
 {
-    "first_name" : "daniel",
-    "last_name" : "colmenares",
-    "username" : "dcdager3",
-    "email" : "dcdage5@example.com"
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "longitud": "-2.934614",
+    "latitud": "43.262378",
+    "telefono": "944123456",
+    "cuota": "65",
+    "experiencia": "Experta en enseñanza de idiomas",
+    "usuario_id": 1016
 }
 ###
-PUT {{host}}/api/teachers/201
+PUT {{host}}/api/teachers/41
 Content-Type: application/json
 
 {
-    "first_name" : "daniel",
-    "last_name" : "colmenares",
-    "username" : "dcdager13",
-    "email" : "dcdage50@example.com"
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48002,
+    "longitud": "-2.934614",
+    "latitud": "43.262378",
+    "telefono": "944123456",
+    "cuota": "65",
+    "experiencia": "Experta en enseñanza de idiomas"
 }
 
 ###
-DELETE {{host}}/api/teachers/191
+DELETE {{host}}/api/teachers/41
 
 ###
 POST   {{host}}/api/mail

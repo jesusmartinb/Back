@@ -1,4 +1,4 @@
-const { getAll, getById, create, update, deleteById } = require('../../models/teachers.model');
+const { getAll, getById, create, update, deleteById, getMap } = require('../../models/teachers.model');
 
 const router = require('express').Router();
 
@@ -24,6 +24,17 @@ router.get('/', async (req, res) => {
     }
     
 })
+
+router.get('/map', async (req, res) => {
+    
+    try {
+        const [result] = await getMap();
+        res.json(result);
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
+
 
 router.get('/:teacherId', async (req, res) => {
     const {teacherId} = req.params;
