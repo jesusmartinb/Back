@@ -1,7 +1,7 @@
 # GET ALL TEACHERS PUBLIC LOCATION
 GET https://teachers-groupb.herokuapp.com/api/teachers/map
 
-## RESPONSE
+### RESPONSE
 [
   {
     "nombre": "Juan",
@@ -21,7 +21,7 @@ GET https://teachers-groupb.herokuapp.com/api/teachers/map
 GET https://teachers-groupb.herokuapp.com/api/teachers
 GET https://teachers-groupb.herokuapp.com/api/teachers?page=PAGINA
 
-## RESPONSE 
+### RESPONSE 
 {
   "page": 2,
   "perPage": 5,
@@ -49,7 +49,7 @@ GET https://teachers-groupb.herokuapp.com/api/teachers?page=PAGINA
     
  GET https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
- ## RESPONSE
+ ### RESPONSE
  
 [
   {
@@ -74,7 +74,7 @@ GET https://teachers-groupb.herokuapp.com/api/teachers?page=PAGINA
 
 POST https://teachers-groupb.herokuapp.com/api/teachers
 
-## REQUEST
+### REQUEST
 
 {
     "nombre": "Laura",
@@ -91,7 +91,7 @@ POST https://teachers-groupb.herokuapp.com/api/teachers
     "experiencia": "Experta en enseñanza de idiomas"
 }
 
-## RESPONSE 
+### RESPONSE 
 
 
 {
@@ -115,7 +115,7 @@ POST https://teachers-groupb.herokuapp.com/api/teachers
  
  PUT https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
- ## REQUEST
+ ### REQUEST
  
 {
     "nombre": "Laura",
@@ -132,7 +132,7 @@ POST https://teachers-groupb.herokuapp.com/api/teachers
     "experiencia": "Experta en enseñanza de idiomas"
 }
 
-## RESPONSE 
+### RESPONSE 
 
 {
   "id": 51,
@@ -155,7 +155,7 @@ POST https://teachers-groupb.herokuapp.com/api/teachers
 
 DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
- ## RESPONSE 
+ ### RESPONSE 
 
 {
   "id": 51,
@@ -172,4 +172,14 @@ DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
   "cuota": "65",
   "experiencia": "Experta en enseñanza de idiomas",
   "usuario_id": 1016
+}
+
+# SEND EMAIL
+
+### REQUEST
+
+{
+  "destinatario": "XXXXXXXX@gmail.com",
+  "asunto": "TFM",
+  "cuerpo": "Este es un correo de teacherapp"
 }
