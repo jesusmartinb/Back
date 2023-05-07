@@ -1,14 +1,14 @@
 @host = http://localhost:3000
 
+
 GET {{host}}/api/teachers?page=2
+Authorization: 'si'
 
 ###
 GET {{host}}/api/teachers/map
 
 ###
 GET {{host}}/api/teachers/6
-
-
 
 ###
 POST {{host}}/api/teachers
@@ -30,7 +30,7 @@ Content-Type: application/json
     "usuario_id": 1016
 }
 ###
-PUT {{host}}/api/teachers/41
+PUT {{host}}/api/teachers/51
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{host}}/api/teachers/41
+DELETE {{host}}/api/teachers/51
 
 ###
 POST   {{host}}/api/mail
@@ -59,4 +59,24 @@ Content-Type: application/json
   "destinatario": "danieldager@gmail.com",
   "asunto": "TFM",
   "cuerpo": "Este es un correo de teacherapp"
+}
+
+### API REGISTER
+POST   {{host}}/api/users/register
+Content-Type: application/json
+
+{
+  "username": "dc1",
+  "email": "dc1@gmail.com",
+  "password": "12345",
+  "role" : "profesor"
+}
+
+### API LOGIN
+POST   {{host}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "dc1@gmail.com",
+  "password": "12345"
 }
