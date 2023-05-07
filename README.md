@@ -1,9 +1,10 @@
 # Requisitos mínimos
 
-## Formularios de registro tanto para alumnos como para profesores.
 
-# CREATE NEW TEACHER   (PROFESOR)
-POST https://teachers-groupb.herokuapp.com/api/teachers
+1. ## Formularios de registro tanto para alumnos como para profesores.
+
+## CREATE NEW TEACHER   (PROFESOR)
+POST `https://teachers-groupb.herokuapp.com/api/teachers`
 
 ### REQUEST
 Header: TOKEN
@@ -22,10 +23,11 @@ Header: TOKEN
     "cuota": "65",
     "experiencia": "Experta en enseñanza de idiomas"
 }
+```
 
 ### RESPONSE 
 
-
+```json
 {
   "id": 51,
   "nombre": "Laura",
@@ -42,66 +44,69 @@ Header: TOKEN
   "experiencia": "Experta en enseñanza de idiomas",
   "usuario_id": 1016
 }
+```
 
-## Login de acceso a usuarios.
+2. ## Login de acceso a usuarios.
 
 ## REGISTER USER  (PUBLIC)
-https://teachers-groupb.herokuapp.com/api/users/register
+POST `https://teachers-groupb.herokuapp.com/api/users/register`
 
 ### REQUEST
-
+```json
 {
   "username": "dc6",
   "email": "dc6@gmail.com",
   "password": "12345",
   "role" : "alumno"
 }
-
+```
  ### RESPONSE 
-
+```json
 {
   "insertId": 161
 }
-
+```
 ## LOGIN USER (PUBLIC)
-https://teachers-groupb.herokuapp.com/api/users/login
+POST `https://teachers-groupb.herokuapp.com/api/users/login`
 
 ### REQUEST
-
+```json
 {
   "email": "dc6@gmail.com",
   "password": "12345"
 }
-
+```
  ### RESPONSE 
-
+```json
 {
   "success": "Login correcto",
   "token": "TOKEN"
 }
-
+```
 ## LOGIN PROFILE (LOGEADO)
-https://teachers-groupb.herokuapp.com/api/users/profile
+GET `https://teachers-groupb.herokuapp.com/api/users/profile`
 
 ### REQUEST
 Header: TOKEN
 
 ### RESPONSE
+```json
 {
   "id": 111,
   "username": "dc5",
   "email": "dc5@gmail.com",
   "role": "profesor"
 }
+```
 
 
-
-## Parte publica de la web, donde veras un mapa con los profesores que tienes cerca de u ubicación y un listado con los profesores mejor puntuados.
+3. ## Parte publica de la web, donde veras un mapa con los profesores que tienes cerca de u ubicación y un listado con los profesores mejor puntuados.
 
 ## GET TEACHERS 5 NEAR LOCATION (PUBLIC)
-GET https://teachers-groupb.herokuapp.com/api/teachers/map/LATITUD/LONGITUD
+GET `https://teachers-groupb.herokuapp.com/api/teachers/map/`**_LATITUD_**/**_LONGITUD_**
 
 ### RESPONSE
+```json
 [
   {
     "nombre": "Juan",
@@ -115,12 +120,12 @@ GET https://teachers-groupb.herokuapp.com/api/teachers/map/LATITUD/LONGITUD
     "longitud": "2.202375",
     "latitud": "41.403633"
   }]
-
+```
 ## GET BEST SCORE TEACHERS (PUBLIC)
-GET https://teachers-groupb.herokuapp.com/api/puntuacion
+GET `https://teachers-groupb.herokuapp.com/api/puntuacion`
 
 ### RESPONSE
-
+```json
 [
   {
     "id_profesor": 2,
@@ -132,21 +137,22 @@ GET https://teachers-groupb.herokuapp.com/api/puntuacion
     }
   }
 ]
-
-## Los administradores podrán ver el listado de alumnos y darlos de baja (baja lógica no borrarlos).
+```
+4. ## Los administradores podrán ver el listado de alumnos y darlos de baja (baja lógica no borrarlos).
 
 PENDIENTE
 
-## Los administradores podrán ver un listado de los profesores y validarlos para que puedan aparecer en el directorio
+5. ## Los administradores podrán ver un listado de los profesores y validarlos para que puedan aparecer en el directorio
   
   ## GET ALL TEACHERS INACTIVE (ADMIN)
-  GET https://teachers-groupb.herokuapp.com/api/teachers
-  GET https://teachers-groupb.herokuapp.com/api/teachers?page=PAGINA
+  GET `https://teachers-groupb.herokuapp.com/api/teachers`
+  GET `https://teachers-groupb.herokuapp.com/api/teachers?page=`**_PAGINA_**
   
   ### REQUEST
   Header: TOKEN
   
   ### RESPONSE 
+  ```json
   {
     "page": 2,
     "perPage": 5,
@@ -171,10 +177,11 @@ PENDIENTE
         "status": 0
       },
     ]}
+ ```
       
 
 ## SET TEACHER ACTIVE (ADMIN)
- PUT https://teachers-groupb.herokuapp.com/api/teachers/active/TEACHERID
+ PUT `https://teachers-groupb.herokuapp.com/api/teachers/active/`**_TEACHERID_**
  
  ### REQUEST
 Header: TOKEN
@@ -182,6 +189,7 @@ Header: TOKEN
  ### RESPONSE 
 
 ### RESPONSE 
+```json
 {
   "id": 51,
   "nombre": "Laura",
@@ -199,17 +207,18 @@ Header: TOKEN
   "usuario_id": 1016,
   "status":1
 }
+```
 
-## Los profesores podrán ver su perfil y los datos de los alumnos que están inscritos con ellos.
+6. ## Los profesores podrán ver su perfil y los datos de los alumnos que están inscritos con ellos.
 
 ## GET TEACHER BY USERID (PROFESOR)
-GET https://teachers-groupb.herokuapp.com/api/teachers/user/USERID
+GET `https://teachers-groupb.herokuapp.com/api/teachers/user/`**_USERID_**
 
 ### REQUEST
 Header: TOKEN
 
  ### RESPONSE 
-
+```json
 {
   "id": 1,
   "nombre": "Juan",
@@ -227,16 +236,17 @@ Header: TOKEN
   "usuario_id": 1001,
   "status": 1
 }
+```
 
 
-# GET ALUMNO BY TEACHERID (PROFESOR)
-GET https://teachers-groupb.herokuapp.com/api/TEACHERID
+## GET ALUMNO BY TEACHERID (PROFESOR)
+GET `https://teachers-groupb.herokuapp.com/api/`**_TEACHERID_**
 
 ### REQUEST
 Header: TOKEN
 
  ### RESPONSE
-
+```json
  [
   {
     "id": 1,
@@ -258,27 +268,27 @@ Header: TOKEN
     "rama_co_id": 1,
     "nivel_id": 1
   }]
+```
 
 
 
-
-## El alumno solo podrá acceder a su perfil y puntuar y opinar sobre los diferentes profesores siempre y cuando haya sido alumno suyo en algún momento.
+7. ## El alumno solo podrá acceder a su perfil y puntuar y opinar sobre los diferentes profesores siempre y cuando haya sido alumno suyo en algún momento.
 
 PENDIENTE
 
-### Deseables:
+# Deseables:
 
-## Envío de notificaciones por email a los administradores cuando un nuevo profesor se registra para que el administrador vaya a validarlo.
+1. ## Envío de notificaciones por email a los administradores cuando un nuevo profesor se registra para que el administrador vaya a validarlo.
 
 ## SEND EMAIL  (PROFESOR)
-https://teachers-groupb.herokuapp.com/api/mail
+POST `https://teachers-groupb.herokuapp.com/api/mail`
 
 ### REQUEST
 Header: TOKEN
-
+```json
 { "destinatario": "XXXXXXXX@gmail.com", "asunto": "TFM", "cuerpo": "Este es un correo de teacherapp" }
-
- Sistema de mensajes (no chat en tiempo real) donde un alumno se puede
+```
+2. ## Sistema de mensajes (no chat en tiempo real) donde un alumno se puede
 comunicar con su profesor y viceversa, tipo Wallapop.
 
 PENDIENTE
@@ -290,7 +300,7 @@ PENDIENTE
  GET https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
  ### RESPONSE
- 
+ ```json
 [
   {
     "id": 6,
@@ -309,57 +319,14 @@ PENDIENTE
     "usuario_id": 1006
   }
 ]
-
-# CREATE NEW TEACHER
-
-POST https://teachers-groupb.herokuapp.com/api/teachers
-
-### REQUEST
-
-{
-    "nombre": "Laura",
-    "apellidos": "González Sánchez",
-    "fecha_nacimiento": "1984-06-04 00:00:00",
-    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-    "direccion": "Calle Mayor 2",
-    "ciudad": "Bilbao",
-    "codigo_postal": 48002,
-    "longitud": "-2.934614",
-    "latitud": "43.262378",
-    "telefono": "944123456",
-    "cuota": "65",
-    "experiencia": "Experta en enseñanza de idiomas"
-}
-
-### RESPONSE 
-
-
-{
-  "id": 51,
-  "nombre": "Laura",
-  "apellidos": "González Sánchez",
-  "fecha_nacimiento": "1984-06-04T00:00:00.000Z",
-  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-  "direccion": "Calle Mayor 2",
-  "ciudad": "Bilbao",
-  "codigo_postal": 48001,
-  "longitud": "-2.934614",
-  "latitud": "43.262378",
-  "telefono": "944123456",
-  "cuota": "65",
-  "experiencia": "Experta en enseñanza de idiomas",
-  "usuario_id": 1016
-}
- 
- # UPDATE TEACHER
- 
+```
 
 
  ## UPDATE TEACHER (ADMIN)
  PUT https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
  ### REQUEST
- 
+ ```json
 {
     "nombre": "Laura",
     "apellidos": "González Sánchez",
@@ -374,9 +341,9 @@ POST https://teachers-groupb.herokuapp.com/api/teachers
     "cuota": "65",
     "experiencia": "Experta en enseñanza de idiomas"
 }
-
+```
 ### RESPONSE 
-
+```json
 {
   "id": 51,
   "nombre": "Laura",
@@ -393,12 +360,12 @@ POST https://teachers-groupb.herokuapp.com/api/teachers
   "experiencia": "Experta en enseñanza de idiomas",
   "usuario_id": 1016
 }
-
+```
 ## DELETE TEACHER (ADMIN)
 DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
  
  ### RESPONSE 
-
+```json
 {
   "id": 51,
   "nombre": "Laura",
@@ -416,13 +383,4 @@ DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
   "usuario_id": 1016
 }
 }
-
-# SEND EMAIL
-
-### REQUEST
-
-{
-  "destinatario": "XXXXXXXX@gmail.com",
-  "asunto": "TFM",
-  "cuerpo": "Este es un correo de teacherapp"
-}
+```
