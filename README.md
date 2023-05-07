@@ -181,6 +181,7 @@ Header: TOKEN
 
  ### RESPONSE 
 
+### RESPONSE 
 {
   "id": 51,
   "nombre": "Laura",
@@ -308,6 +309,49 @@ PENDIENTE
     "usuario_id": 1006
   }
 ]
+
+# CREATE NEW TEACHER
+
+POST https://teachers-groupb.herokuapp.com/api/teachers
+
+### REQUEST
+
+{
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48002,
+    "longitud": "-2.934614",
+    "latitud": "43.262378",
+    "telefono": "944123456",
+    "cuota": "65",
+    "experiencia": "Experta en enseñanza de idiomas"
+}
+
+### RESPONSE 
+
+
+{
+  "id": 51,
+  "nombre": "Laura",
+  "apellidos": "González Sánchez",
+  "fecha_nacimiento": "1984-06-04T00:00:00.000Z",
+  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+  "direccion": "Calle Mayor 2",
+  "ciudad": "Bilbao",
+  "codigo_postal": 48001,
+  "longitud": "-2.934614",
+  "latitud": "43.262378",
+  "telefono": "944123456",
+  "cuota": "65",
+  "experiencia": "Experta en enseñanza de idiomas",
+  "usuario_id": 1016
+}
+ 
+ # UPDATE TEACHER
  
 
 
@@ -370,4 +414,15 @@ DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
   "cuota": "65",
   "experiencia": "Experta en enseñanza de idiomas",
   "usuario_id": 1016
+}
+}
+
+# SEND EMAIL
+
+### REQUEST
+
+{
+  "destinatario": "XXXXXXXX@gmail.com",
+  "asunto": "TFM",
+  "cuerpo": "Este es un correo de teacherapp"
 }
