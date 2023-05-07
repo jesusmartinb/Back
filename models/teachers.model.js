@@ -4,13 +4,17 @@ const getMap = () => {
     return db.query('select nombre, apellidos, longitud, latitud from profesor')
 }
 
-const getAll = () => {
-    return  db.query('select *  from profesor');
+const getAllInactive = () => {
+    return  db.query('select *  from profesor where status=0');
 }
 
 const getById  = (teacherId) => {
     return db.query('select * from profesor where  id =?',[teacherId]);
 
+}
+
+const getByUserId = (userId) => {
+    return db.query('select * from profesor where usuario_id=?',[userId]);
 }
 
 const create = ({nombre, apellidos, fecha_nacimiento, foto, direccion, ciudad, codigo_postal, longitud, latitud,telefono, cuota, experiencia, usuario_id}) => {
@@ -19,6 +23,13 @@ const create = ({nombre, apellidos, fecha_nacimiento, foto, direccion, ciudad, c
         [nombre, apellidos, fecha_nacimiento, foto, direccion, ciudad, codigo_postal, longitud, latitud,telefono, cuota, experiencia, usuario_id]
     )
 
+}
+
+const setActive = (teacherId) => {
+    return db.query(
+        'update profesor set status=1 where id = ?',
+        [teacherId]
+    )
 }
 
 const update = (teacherId,{nombre, apellidos, fecha_nacimiento, foto, direccion, ciudad, codigo_postal, longitud, latitud,telefono, cuota, experiencia})  => {
@@ -34,5 +45,6 @@ const deleteById = (teacherId)  => {
 
 
 module.exports = {
-    getAll, getById,create,update, deleteById, getMap
+    getAllInactive, getById,create,update, deleteById, getMap,
+    setActive, getByUserId
 }
