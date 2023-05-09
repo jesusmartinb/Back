@@ -4,6 +4,25 @@ const {checkToken, checkRole } = require('../../utils/middlewares');
 const router = require('express').Router();
 const math = require('mathjs');
 
+const NodeGeocoder = require('node-geocoder');
+
+
+const options = {
+    provider: 'google',
+    apiKey: 'AIzaSyALrejSQ9BfSzSSfpnOqgw30eyTQ2vGm3o' // for Mapquest, OpenCage, Google Premier
+};
+const geocoder = NodeGeocoder(options);
+  
+
+router.get('/google', async (req,res) => {
+    try {
+   const result = await geocoder.geocode('29 champs elysée paris');
+        res.send(result[0]);
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
+
 
 router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     try {
@@ -27,8 +46,11 @@ router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     
 })
 
-router.get('/map/:latitud/:longitud', async (req, res) => {
-    const { latitud, longitud } = req.params;
+router.get('/map', async (req, res) => {
+     
+    const [coor] = await geocoder.geocode(req.body.direccion);
+    
+
     const registros_distancias = [];
     try {
         const [result] = await getMap();
@@ -37,7 +59,7 @@ router.get('/map/:latitud/:longitud', async (req, res) => {
             const latitud_num = Number(registro.latitud);
             const longitud_num = Number(registro.longitud);
             // Calculamos la distancia entre la latitud y longitud ingresadas y cada registro de la base de datos
-            const distancia = math.sqrt((latitud - latitud_num) ** 2 + (longitud - longitud_num) ** 2);
+            const distancia = math.sqrt((coor.latitude - latitud_num) ** 2 + (coor.longitud - longitud_num) ** 2);
             delete registro.password;
             
             registros_distancias.push({ registro, distancia });
@@ -80,6 +102,9 @@ router.get('/:teacherId', async (req, res) => {
 
 router.post('/', checkToken,checkRole('profesor'), async (req, res) => {
     try {
+        const [coor] = await geocoder.geocode(req.body.direccion);
+        req.body.latitud = coor.latitude;
+        req.body.longitud = coor.longitude;
         const [result] = await createDatos(req.body);
         await createProfesor(req.body)
         const [teacher] = await getById(result.insertId);
@@ -91,11 +116,11 @@ router.post('/', checkToken,checkRole('profesor'), async (req, res) => {
 }
 )
 
-router.put('/active/:teacherId',checkToken,checkRole('admin'), async (req, res) => {
+router.put('/active/:userId',checkToken,checkRole('admin'), async (req, res) => {
     try {
-        const {teacherId} = req.params;
-        await setActive(teacherId);
-        const [teacher] = await getByTeacherId(teacherId)
+        const {userId} = req.params;
+        await setActive(userId);
+        const [teacher] = await getByTeacherId(userId)
         res.json(teacher[0]);
         } catch (error) {
         res.json({fatal: error.message});
@@ -103,32 +128,6 @@ router.put('/active/:teacherId',checkToken,checkRole('admin'), async (req, res) 
 })
 
 
-router.put('/:teacherId', checkToken,checkRole('admin'),async (req, res) => {
-    try {
-    const {teacherId} = req.params;
-    await update(teacherId, req.body);
-    const [teacher] = await getById(teacherId)
-    res.json(teacher[0]);
-    } catch (error) {
-    res.json({fatal: error.message});
-}
 
-})
-
-
-
-
-router.delete('/:teacherId',checkToken,checkRole('admin'), async (req, res) => {
-
-    const {teacherId} = req.params;
-    try {
-    const [teacher] = await getById(teacherId)
-    await deleteById(teacherId);
-    res.json(teacher[0]);
-    } catch(error){
-        res.json({fatal: error.message});
-    }
-
-})
 
 module.exports = router;

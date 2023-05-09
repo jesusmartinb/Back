@@ -4,10 +4,10 @@ const { checkToken, checkRole } = require('../../utils/middlewares');
 const router = require('express').Router();
 
 
-router.get('/:teacherId',checkToken,checkRole('profesor'), async (req, res) => {
-    const {teacherId} = req.params;
+router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
+    const {userId} = req.params;
     try {
-       const [results] = await getAlumnosbyUser(teacherId);
+       const [results] = await getAlumnosbyUser(userId);
        if (results.length===0) {
             return res.json({ fatal: 'No existe un profesor con ese ID'});
        }
