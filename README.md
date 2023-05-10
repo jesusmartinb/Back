@@ -44,6 +44,44 @@ Header: TOKEN
 }
 ```
 
+## CREATE NEW STUDENT   (ALUMNO)
+POST `https://teachers-groupb.herokuapp.com/api/alumno`
+
+### REQUEST
+Header: TOKEN
+```json
+{
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "telefono": "925427859",
+    "usuario_id": 291,
+    "estudia" : "Ingenieria"
+}
+```
+
+### RESPONSE 
+```json
+{
+  "id": 371,
+  "nombre": "Laura",
+  "apellidos": "González Sánchez",
+  "fecha_nacimiento": "1984-06-03T22:00:00.000Z",
+  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+  "direccion": "Calle Mayor 2",
+  "ciudad": "Bilbao",
+  "codigo_postal": 48001,
+  "longitud": "-118.3893411",
+  "latitud": "33.8082632",
+  "telefono": "925427859",
+  "usuario_id": 291
+}
+```
+
 2. ## Login de acceso a usuarios.
 
 ## REGISTER USER  (PUBLIC)
@@ -149,7 +187,65 @@ GET `https://teachers-groupb.herokuapp.com/api/puntuacion`
 ```
 4. ## Los administradores podrán ver el listado de alumnos y darlos de baja (baja lógica no borrarlos).
 
-PENDIENTE
+  ## GET ALL STUDENTS (ADMIN)
+
+  GET `https://teachers-groupb.herokuapp.com/api/alumno`
+  GET `https://teachers-groupb.herokuapp.com/api/alumno?page=`**_PAGINA_**
+  ### REQUEST
+  Header: TOKEN
+  ### RESPONSE 
+  ```json
+  {
+    "page": 1,
+    "perPage": 5,
+    "totalItems": 4,
+    "totalPages": 1,
+    "results": [
+      {
+        "id": 201,
+        "estudia": "Licenciatura en Historia",
+        "usuario_id": 151,
+        "status": 1,
+        "nombre": "María",
+        "apellidos": "García Pérez",
+        "fecha_nacimiento": "1999-05-09T22:00:00.000Z",
+        "foto": "https://i.pravatar.cc/500?u=norma.torresnevarez@peticiones.online",
+        "direccion": "Calle Mayor, 1",
+        "ciudad": "Madrid",
+        "codigo_postal": 28013,
+        "longitud": "-3.703790",
+        "latitud": "40.415363",
+        "telefono": "911234567"
+      }]
+  }
+  ```
+
+## SET STUDENT INACTIVE (ADMIN)
+PUT `https://teachers-groupb.herokuapp.com/api/alumno/inactiv/USUARIO_ID`
+
+### REQUEST
+Header: TOKEN
+### RESPONSE 
+```json
+{
+  "id": 1,
+  "nombre": "María",
+  "apellidos": "García Pérez",
+  "fecha_nacimiento": "1999-05-09T22:00:00.000Z",
+  "foto": "https://i.pravatar.cc/500?u=norma.torresnevarez@peticiones.online",
+  "direccion": "Calle Mayor, 1",
+  "ciudad": "Madrid",
+  "codigo_postal": 28013,
+  "longitud": "-3.703790",
+  "latitud": "40.415363",
+  "telefono": "911234567",
+  "usuario_id": 151,
+  "estudia": "Licenciatura en Historia",
+  "status": 0
+}
+```
+
+
 
 5. ## Los administradores podrán ver un listado de los profesores y validarlos para que puedan aparecer en el directorio
   
@@ -186,7 +282,7 @@ PENDIENTE
       "telefono": "952345678"
       },
     ]}
- ```
+  ```
       
 
 ## SET TEACHER ACTIVE (ADMIN)
@@ -248,7 +344,7 @@ Header: TOKEN
 ```
 
 
-# GET ALUMNO BY USUARIO_ID (PROFESOR)
+## GET ALUMNO BY USUARIO_ID (PROFESOR)
 GET https://teachers-groupb.herokuapp.com/api/clase/USUARIO_ID
 
 ### REQUEST
@@ -283,7 +379,87 @@ Header: TOKEN
 
 7. ## El alumno solo podrá acceder a su perfil y puntuar y opinar sobre los diferentes profesores siempre y cuando haya sido alumno suyo en algún momento.
 
-PENDIENTE
+## GET ALUMNO BY USUARIO_ID (ALUMNO)
+GET https://teachers-groupb.herokuapp.com/api/alumno/USUARIO_ID
+### REQUEST
+Header: TOKEN
+### RESPONSE
+```json
+{
+  "id": 2,
+  "nombre": "Pedro",
+  "apellidos": "García Pérez",
+  "fecha_nacimiento": "1999-05-09T22:00:00.000Z",
+  "foto": "https://i.pravatar.cc/500?u=norma.torresnevarez@peticiones.online",
+  "direccion": "Calle Mayor, 1",
+  "ciudad": "Madrid",
+  "codigo_postal": 28013,
+  "longitud": "-3.723790",
+  "latitud": "40.415363",
+  "telefono": "911234867",
+  "usuario_id": 161,
+  "estudia": "Licenciatura en Historia",
+  "status": 1
+}
+```
+
+## GET ALL TEACHERS ACTIVE (ALUMNO)
+GET `https://teachers-groupb.herokuapp.com/api/teachers/active`
+### REQUEST
+Header: TOKEN
+### RESPONSE
+```json
+{
+  "page": 1,
+  "perPage": 5,
+  "totalItems": 7,
+  "totalPages": 2,
+  "results": [
+    {
+      "id": 1,
+      "cuota": "50.00",
+      "experiencia": "Especialista en matemáticas",
+      "usuario_id": 1001,
+      "status": 1,
+      "nombre": "Juan",
+      "apellidos": "García López",
+      "fecha_nacimiento": "1985-05-11T22:00:00.000Z",
+      "foto": "https://i.pravatar.cc/500?u=norma.torresnevarez@peticiones.online",
+      "direccion": "Calle Mayor 10",
+      "ciudad": "Madrid",
+      "codigo_postal": 28013,
+      "longitud": "-3.705307",
+      "latitud": "40.416878",
+      "telefono": "910123456"
+    }]}
+```
+
+## GET ALUMNO = TEACHER (ALUMNO)  (DEVUELVE TRUE SI UN ALUMNO HA TENIDO CLASES CON UN PROFESOR)
+GET `https://teachers-groupb.herokuapp.com/api/clase/exist`
+### REQUEST
+Header: TOKEN
+### RESPONSE
+```json
+{
+  "profesor_id": 2,
+  "alumno_id": 1
+}
+```
+NOTA: El profesor_id es el campo id al llamar "get all teachers active" y alumno_id es el campo id al llamar "get alumno by usuario_id".
+
+## CREATE PUNTUACION (ALUMNO)
+POST `https://teachers-groupb.herokuapp.com/api/puntuacion`
+### REQUEST
+Header: TOKEN
+### RESPONSE
+```json
+{
+  "profesor_id": 3,
+  "alumno_id": 1,
+  "puntuacion": 10,
+  "opinion": "excelente"
+}
+```
 
 # Deseables:
 

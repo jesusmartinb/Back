@@ -8,6 +8,10 @@ const getAllInactive = () => {
     return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id where profesor.status=0');
 }
 
+const getAllActive = () => {
+    return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id where profesor.status=1');
+}
+
 const getById  = (insertId) => {
     return db.query('select * from datos_personales where  id =?',[insertId]);
 
@@ -60,5 +64,5 @@ const deleteById = (teacherId)  => {
 
 module.exports = {
     getAllInactive, getById,createDatos,update, deleteById, getMap,
-    setActive, getByUserId, createProfesor, getByTeacherId
+    setActive, getByUserId, createProfesor, getByTeacherId, getAllActive
 }

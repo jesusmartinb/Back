@@ -26,8 +26,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6
 
 ### GET ALUMNOS BY USUAIO_ID
 GET {{host}}/api/clase/1001
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NDYyNiwiaWF0IjoxNjgzNjY0MzI2fQ.7u7fvf5wFkkmXBBxkQ4bxLvw0hwAqCPnTet2DCrmKIk
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NjE4MywiaWF0IjoxNjgzNjY1ODgzfQ.cGM_i2B_294Dm_HQPZUkn7z2XYOfJYfufQfAPjfU7m4
 ###
 POST {{host}}/api/teachers
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4MzY2MTY2MiwiaWF0IjoxNjgzNjYxMzYyfQ.Fslzb1S5DFybfxy--CMZHw6rZIYcxlZbT1dMq2OrtlU
@@ -90,10 +89,10 @@ POST   {{host}}/api/users/register
 Content-Type: application/json
 
 {
-  "username": "dc13",
-  "email": "dc13@gmail.com",
+  "username": "dc15",
+  "email": "dc15@gmail.com",
   "password": "12345",
-  "role" : "profesor"
+  "role" : "alumno"
 }
 
 ### API LOGIN
@@ -101,10 +100,69 @@ POST   {{host}}/api/users/login
 Content-Type: application/json
 
 {
-  "email": "dc13@gmail.com",
+  "email": "dc6@gmail.com",
   "password": "12345"
 }
 
 ### API PROFILE
 GET {{host}}/api/users/profile
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NDYyNiwiaWF0IjoxNjgzNjY0MzI2fQ.7u7fvf5wFkkmXBBxkQ4bxLvw0hwAqCPnTet2DCrmKIk
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NjE4MywiaWF0IjoxNjgzNjY1ODgzfQ.cGM_i2B_294Dm_HQPZUkn7z2XYOfJYfufQfAPjfU7m4
+
+### TRAE TODOS LOS ALUMNOS
+GET {{host}}/api/alumno
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjgzNzA2MjIxLCJpYXQiOjE2ODM3MDU5MjF9.Vi7arufgWRMdCxhloE3GFCFT1_TSKTL5EBivz7ypl-s
+
+
+### CREA ALUMNO
+POST {{host}}/api/alumno
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOTEsImV4cCI6MTY4MzcwNTIxMywiaWF0IjoxNjgzNzA0OTEzfQ.ynkhdFfwdQC3RqK4FJ1HxwCLg5meW4bkgMxp64WcuGE
+Content-Type: application/json
+
+{
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "telefono": "925427859",
+    "usuario_id": 291,
+    "estudia" : "Ingenieria"
+}
+
+### SET STUDENT INACTIVE
+PUT {{host}}/api/alumno/inactive/151
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjgzNzA3MzI3LCJpYXQiOjE2ODM3MDcwMjd9.oCs7rpsb3OOTqnZ6YvrCPHvcMuyFVIuoCkV6ylJR-i4
+
+### TRAE LOS DATOS DE Un ALUMNO
+GET {{host}}/api/alumno/161
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcwODUxNSwiaWF0IjoxNjgzNzA4MjE1fQ.I6pUFMZkYedsPScDxI1LdDxPpB6WDQsPXdQ0CGnUPK8
+
+### GET ALL TECAHERS ACTIVE
+GET {{host}}/api/teachers/active
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMDc0MCwiaWF0IjoxNjgzNzEwNDQwfQ.EwIaoTlxa9B8wrDhOu7jbjc930w4P3CNbgCEyuSviR4
+
+### GET EXIST TEACHER STUDENT
+GET {{host}}/api/clase/exist
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMjM4OCwiaWF0IjoxNjgzNzEyMDg4fQ.FXL9LhssT-EGek5I-hdt3hg1P11NcAD5-EpWG-VtoQI
+Content-Type: application/json
+
+{
+  "profesor_id": 2,
+  "alumno_id": 1
+
+}
+
+### CARGAR UNA OPINION Y PUNTUACION
+POST {{host}}/api/puntuacion
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMzIwNSwiaWF0IjoxNjgzNzEyOTA1fQ.IRvsM7UtA743t0kr6inNjCQ3jhxYPgnIVQaMyi1d08c
+Content-Type: application/json
+
+{
+  "profesor_id": 3,
+  "alumno_id": 1,
+  "puntuacion": 10,
+  "opinion": "excelente"
+
+}

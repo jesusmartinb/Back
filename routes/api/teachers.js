@@ -1,32 +1,38 @@
-const {  getById, update, deleteById, getMap, getAllInactive, setActive, getByUserId, createProfesor, createDatos, getByTeacherId } = require('../../models/teachers.model');
+const {  getById, getMap, getAllInactive, setActive, createProfesor, createDatos, getByTeacherId, getAllActive } = require('../../models/teachers.model');
 const {checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
 const math = require('mathjs');
+const { geocoder } = require('../../config/geocoder');
 
-const NodeGeocoder = require('node-geocoder');
 
-
-const options = {
-    provider: 'google',
-    apiKey: 'AIzaSyALrejSQ9BfSzSSfpnOqgw30eyTQ2vGm3o' // for Mapquest, OpenCage, Google Premier
-};
-const geocoder = NodeGeocoder(options);
-  
-
-router.get('/google', async (req,res) => {
-    try {
-   const result = await geocoder.geocode('29 champs elysée paris');
-        res.send(result[0]);
-    } catch (error) {
-        res.json({fatal: error.message});
-    }
-})
 
 
 router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     try {
         const [items] = await getAllInactive();
+        const perPage = 5; // número de elementos por página
+        let page = req.query.page || 1; // página solicitada (por defecto es la primera)
+        page = parseInt(page); 
+        const startIndex = (page - 1) * perPage; // índice de inicio de la página
+        const endIndex = startIndex + perPage; // índice final de la página
+        const results = items.slice(startIndex, endIndex); // elementos de la página solicitada
+        res.json({
+            page,
+            perPage,
+            totalItems: items.length,
+            totalPages: Math.ceil(items.length / perPage),
+            results
+        });
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+    
+})
+
+router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
+    try {
+        const [items] = await getAllActive();
         const perPage = 5; // número de elementos por página
         let page = req.query.page || 1; // página solicitada (por defecto es la primera)
         page = parseInt(page); 
