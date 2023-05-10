@@ -12,7 +12,11 @@ const getAlumbyAlumnoId = (alumnoId) => {
         [alumnoId]);
 }
 
+const getTeacherByStudent = ({profesor_id, alumno_id}) => {
+    return db.query('select * from clase where profesor_id=? and alumno_id=?',
+    [profesor_id, alumno_id]);
+}
 
 module.exports = {
-    getAlumnosbyUser,getAlumbyAlumnoId
+    getAlumnosbyUser,getAlumbyAlumnoId, getTeacherByStudent
 }
