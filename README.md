@@ -142,9 +142,11 @@ Header: TOKEN
 GET https://teachers-groupb.herokuapp.com/api/teachers/map
 
 ### REQUEST
+```json
 {
   "direccion" : "Calle Mayor 8"
 }
+```
 
 ### RESPONSE
 ```json
@@ -167,7 +169,7 @@ GET https://teachers-groupb.herokuapp.com/api/teachers/map
     "role": "profesor"
   }
   ]
-
+```
 ## GET BEST SCORE TEACHERS (PUBLIC)
 GET `https://teachers-groupb.herokuapp.com/api/puntuacion`
 
