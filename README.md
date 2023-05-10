@@ -20,6 +20,7 @@ Header: TOKEN
     "longitud": "-2.934614",
     "latitud": "43.262378",
     "telefono": "944123456",
+    "usuario_id": 1016,
     "cuota": "65",
     "experiencia": "Experta en enseñanza de idiomas"
 }
@@ -40,9 +41,6 @@ Header: TOKEN
   "longitud": "-2.934614",
   "latitud": "43.262378",
   "telefono": "944123456",
-  "cuota": "65",
-  "experiencia": "Experta en enseñanza de idiomas",
-  "usuario_id": 1016
 }
 ```
 
@@ -103,23 +101,36 @@ Header: TOKEN
 3. ## Parte publica de la web, donde veras un mapa con los profesores que tienes cerca de u ubicación y un listado con los profesores mejor puntuados.
 
 ## GET TEACHERS 5 NEAR LOCATION (PUBLIC)
-GET `https://teachers-groupb.herokuapp.com/api/teachers/map/`**_LATITUD_**/**_LONGITUD_**
+GET https://teachers-groupb.herokuapp.com/api/teachers/map
+
+### REQUEST
+```json
+{
+  "direccion" : "Calle Mayor 8"
+}
+```
 
 ### RESPONSE
 ```json
 [
-  {
+ {
+    "id": 1001,
     "nombre": "Juan",
     "apellidos": "García López",
+    "fecha_nacimiento": "1985-05-11T22:00:00.000Z",
+    "foto": "https://i.pravatar.cc/500?u=norma.torresnevarez@peticiones.online",
+    "direccion": "Calle Mayor 10",
+    "ciudad": "Madrid",
+    "codigo_postal": 28013,
     "longitud": "-3.705307",
-    "latitud": "40.416878"
-  },
-  {
-    "nombre": "María",
-    "apellidos": "Martínez Sánchez",
-    "longitud": "2.202375",
-    "latitud": "41.403633"
-  }]
+    "latitud": "40.416878",
+    "telefono": "910123456",
+    "usuario_id": 1001,
+    "username": "dc",
+    "email": "dc@gmail.com",
+    "role": "profesor"
+  }
+  ]
 ```
 ## GET BEST SCORE TEACHERS (PUBLIC)
 GET `https://teachers-groupb.herokuapp.com/api/puntuacion`
@@ -160,28 +171,28 @@ PENDIENTE
     "totalPages": 3,
     "results": [
       {
-        "id": 6,
-        "nombre": "Lucía",
-        "apellidos": "Hernández Martín",
-        "fecha_nacimiento": "1989-09-14T00:00:00.000Z",
-        "foto": "https://i.pravatar.cc/500?u=armando.pereasedillo@peticiones.online",
-        "direccion": "Calle del Mar 5",
-        "ciudad": "Málaga",
-        "codigo_postal": 29001,
-        "longitud": "-4.421792",
-        "latitud": "36.721300",
-        "telefono": "952345678",
-        "cuota": "50",
-        "experiencia": "Especialista en física y química",
-        "usuario_id": 1006,
-        "status": 0
+      "id": 6,
+      "cuota": "50.00",
+      "experiencia": "Especialista en física y química",
+      "usuario_id": 1006,
+      "status": 0,
+      "nombre": "Lucía",
+      "apellidos": "Hernández Martín",
+      "fecha_nacimiento": "1989-09-13T22:00:00.000Z",
+      "foto": "https://i.pravatar.cc/500?u=armando.pereasedillo@peticiones.online",
+      "direccion": "Calle del Mar 5",
+      "ciudad": "Málaga",
+      "codigo_postal": 29001,
+      "longitud": "-4.421792",
+      "latitud": "36.721300",
+      "telefono": "952345678"
       },
     ]}
  ```
       
 
 ## SET TEACHER ACTIVE (ADMIN)
- PUT `https://teachers-groupb.herokuapp.com/api/teachers/active/`**_TEACHERID_**
+ PUT https://teachers-groupb.herokuapp.com/api/teachers/active/USUARIO_ID
  
  ### REQUEST
 Header: TOKEN
@@ -211,8 +222,8 @@ Header: TOKEN
 
 6. ## Los profesores podrán ver su perfil y los datos de los alumnos que están inscritos con ellos.
 
-## GET TEACHER BY USERID (PROFESOR)
-GET `https://teachers-groupb.herokuapp.com/api/teachers/user/`**_USERID_**
+## GET TEACHER BY USUARIO_ID (PROFESOR)
+GET https://teachers-groupb.herokuapp.com/api/teachers/user/USUARO_ID
 
 ### REQUEST
 Header: TOKEN
@@ -239,8 +250,8 @@ Header: TOKEN
 ```
 
 
-## GET ALUMNO BY TEACHERID (PROFESOR)
-GET `https://teachers-groupb.herokuapp.com/api/`**_TEACHERID_**
+# GET ALUMNO BY USUARIO_ID (PROFESOR)
+GET https://teachers-groupb.herokuapp.com/api/clase/USUARIO_ID
 
 ### REQUEST
 Header: TOKEN
@@ -293,94 +304,3 @@ comunicar con su profesor y viceversa, tipo Wallapop.
 
 PENDIENTE
 
-
-# OTROS
-
- ## GET TEAHCER BY ID
- GET https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
- 
- ### RESPONSE
- ```json
-[
-  {
-    "id": 6,
-    "nombre": "Lucía",
-    "apellidos": "Hernández Martín",
-    "fecha_nacimiento": "1989-09-14T00:00:00.000Z",
-    "foto": "https://i.pravatar.cc/500?u=armando.pereasedillo@peticiones.online",
-    "direccion": "Calle del Mar 5",
-    "ciudad": "Málaga",
-    "codigo_postal": 29001,
-    "longitud": "-4.421792",
-    "latitud": "36.721300",
-    "telefono": "952345678",
-    "cuota": "50",
-    "experiencia": "Especialista en física y química",
-    "usuario_id": 1006
-  }
-]
-```
-
-
- ## UPDATE TEACHER (ADMIN)
- PUT https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
- 
- ### REQUEST
- ```json
-{
-    "nombre": "Laura",
-    "apellidos": "González Sánchez",
-    "fecha_nacimiento": "1984-06-04 00:00:00",
-    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-    "direccion": "Calle Mayor 2",
-    "ciudad": "Bilbao",
-    "codigo_postal": 48002,
-    "longitud": "-2.934614",
-    "latitud": "43.262378",
-    "telefono": "944123456",
-    "cuota": "65",
-    "experiencia": "Experta en enseñanza de idiomas"
-}
-```
-### RESPONSE 
-```json
-{
-  "id": 51,
-  "nombre": "Laura",
-  "apellidos": "González Sánchez",
-  "fecha_nacimiento": "1984-06-04T00:00:00.000Z",
-  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-  "direccion": "Calle Mayor 2",
-  "ciudad": "Bilbao",
-  "codigo_postal": 48002,
-  "longitud": "-2.934614",
-  "latitud": "43.262378",
-  "telefono": "944123456",
-  "cuota": "65",
-  "experiencia": "Experta en enseñanza de idiomas",
-  "usuario_id": 1016
-}
-```
-## DELETE TEACHER (ADMIN)
-DELETE https://teachers-groupb.herokuapp.com/api/teachers/TEACHERID
- 
- ### RESPONSE 
-```json
-{
-  "id": 51,
-  "nombre": "Laura",
-  "apellidos": "González Sánchez",
-  "fecha_nacimiento": "1984-06-04T00:00:00.000Z",
-  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-  "direccion": "Calle Mayor 2",
-  "ciudad": "Bilbao",
-  "codigo_postal": 48002,
-  "longitud": "-2.934614",
-  "latitud": "43.262378",
-  "telefono": "944123456",
-  "cuota": "65",
-  "experiencia": "Experta en enseñanza de idiomas",
-  "usuario_id": 1016
-}
-}
-```

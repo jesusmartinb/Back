@@ -39,5 +39,5 @@ const checkRole = (role) => {
   };
 
 module.exports = {
-    checkToken,checkRole
+    checkToken, checkRole
 }

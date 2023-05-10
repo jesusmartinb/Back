@@ -1,17 +1,36 @@
 @host = http://localhost:3000
+//@host = https://teachers-groupb.herokuapp.com
 
 
-GET {{host}}/api/teachers?page=2
-Authorization: 'si'
 
-###
+### GET BEST SCORE
+GET {{host}}/api/puntuacion
+### GET INACTIVE
+GET {{host}}/api/teachers?page=1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTY4MzY0MjI3NSwiaWF0IjoxNjgzNjQxOTc1fQ.FmEvagAAE-sWIiFTjbWeyU96TgerDkYWnB3jUqNHC0o
+
+### GET TEACHER ADDRESS
 GET {{host}}/api/teachers/map
+Content-Type: application/json
+
+{
+  "direccion" : "Calle Mayor 8"
+}
 
 ###
 GET {{host}}/api/teachers/6
 
+### GET TEACHER BY USERID
+GET {{host}}/api/teachers/user/1001
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NDYyNiwiaWF0IjoxNjgzNjY0MzI2fQ.7u7fvf5wFkkmXBBxkQ4bxLvw0hwAqCPnTet2DCrmKIk
+
+### GET ALUMNOS BY USUAIO_ID
+GET {{host}}/api/clase/1001
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NDYyNiwiaWF0IjoxNjgzNjY0MzI2fQ.7u7fvf5wFkkmXBBxkQ4bxLvw0hwAqCPnTet2DCrmKIk
+
 ###
 POST {{host}}/api/teachers
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4MzY2MTY2MiwiaWF0IjoxNjgzNjYxMzYyfQ.Fslzb1S5DFybfxy--CMZHw6rZIYcxlZbT1dMq2OrtlU
 Content-Type: application/json
 
 {
@@ -22,15 +41,14 @@ Content-Type: application/json
     "direccion": "Calle Mayor 2",
     "ciudad": "Bilbao",
     "codigo_postal": 48001,
-    "longitud": "-2.934614",
-    "latitud": "43.262378",
-    "telefono": "944123456",
-    "cuota": "65",
-    "experiencia": "Experta en enseñanza de idiomas",
-    "usuario_id": 1016
+    "telefono": "924422859",
+    "usuario_id": 1049,
+    "cuota": 65,
+    "experiencia": "Muchos años de experiencia"
 }
 ###
-PUT {{host}}/api/teachers/51
+PUT {{host}}/api/teachers/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTY4MzM4OTkyOCwiaWF0IjoxNjgzMzg5NjI4fQ.rAmXfgGMusUkMM0btm8qn6evMZ6N-CHY00TWp6z86ls
 Content-Type: application/json
 
 {
@@ -38,7 +56,7 @@ Content-Type: application/json
     "apellidos": "González Sánchez",
     "fecha_nacimiento": "1984-06-04 00:00:00",
     "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-    "direccion": "Calle Mayor 2",
+    "direccion": "Calle Mayor 8",
     "ciudad": "Bilbao",
     "codigo_postal": 48002,
     "longitud": "-2.934614",
@@ -48,11 +66,17 @@ Content-Type: application/json
     "experiencia": "Experta en enseñanza de idiomas"
 }
 
+### SET TEACHER ACTIVE
+PUT {{host}}/api/teachers/active/1001
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDAyLCJleHAiOjE2ODM2NTAzMTUsImlhdCI6MTY4MzY1MDAxNX0.E0SGeGmHPfg_3uTr4yztYyHgAe1Q4RKUDkFOpXMkPDE
 ###
 DELETE {{host}}/api/teachers/51
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTY4MzM4OTkyOCwiaWF0IjoxNjgzMzg5NjI4fQ.rAmXfgGMusUkMM0btm8qn6evMZ6N-CHY00TWp6z86ls
+
 
 ###
 POST   {{host}}/api/mail
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NDYyNiwiaWF0IjoxNjgzNjY0MzI2fQ.7u7fvf5wFkkmXBBxkQ4bxLvw0hwAqCPnTet2DCrmKIk
 Content-Type: application/json
 
 {
@@ -66,8 +90,8 @@ POST   {{host}}/api/users/register
 Content-Type: application/json
 
 {
-  "username": "dc1",
-  "email": "dc1@gmail.com",
+  "username": "dc13",
+  "email": "dc13@gmail.com",
   "password": "12345",
   "role" : "profesor"
 }
@@ -77,6 +101,10 @@ POST   {{host}}/api/users/login
 Content-Type: application/json
 
 {
-  "email": "dc1@gmail.com",
+  "email": "dc13@gmail.com",
   "password": "12345"
 }
+
+### API PROFILE
+GET {{host}}/api/users/profile
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NDYyNiwiaWF0IjoxNjgzNjY0MzI2fQ.7u7fvf5wFkkmXBBxkQ4bxLvw0hwAqCPnTet2DCrmKIk
