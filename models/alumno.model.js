@@ -7,6 +7,11 @@ const createAlumno = ({estudia, usuario_id}) => {
 
 }
 
+const getByUserId = (userId) => {
+    return db.query('select * from alumno where usuario_id=?',[userId]);
+}
+
+
 const getAll = () => {
     return  db.query('select *  from alumno  INNER JOIN datos_personales ON  datos_personales.usuario_id = alumno.usuario_id');
 }
@@ -26,6 +31,6 @@ const getByStudentId = (studentId) => {
 
 
 module.exports = {
-    createAlumno, getAll, setInactive, getByStudentId
+    createAlumno, getAll, setInactive, getByStudentId, getByUserId
     
 }

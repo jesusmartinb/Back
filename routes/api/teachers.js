@@ -1,4 +1,4 @@
-const {  getById, getMap, getAllInactive, setActive, createProfesor, createDatos, getByTeacherId, getAllActive } = require('../../models/teachers.model');
+const {  getById, getMap, getAllInactive, setActive, createProfesor, createDatos, getByTeacherId, getAllActive, getByUserId } = require('../../models/teachers.model');
 const {checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -108,12 +108,9 @@ router.get('/:teacherId', async (req, res) => {
 
 router.post('/', checkToken,checkRole('profesor'), async (req, res) => {
     try {
-        const [coor] = await geocoder.geocode(req.body.direccion);
-        req.body.latitud = coor.latitude;
-        req.body.longitud = coor.longitude;
-        const [result] = await createDatos(req.body);
+        
         await createProfesor(req.body)
-        const [teacher] = await getById(result.insertId);
+        const [teacher] = await getByUserId(req.body.usuario_id);
         res.json(teacher[0]);
 
     } catch (error) {
