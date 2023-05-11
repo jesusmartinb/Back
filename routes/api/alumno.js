@@ -1,5 +1,5 @@
 const { geocoder } = require('../../config/geocoder');
-const { createAlumno, getAll, setInactive, getByStudentId } = require('../../models/alumno.model');
+const { createAlumno, getAll, setInactive, getByStudentId, getByUserId } = require('../../models/alumno.model');
 const { createDatos, getById } = require('../../models/teachers.model');
 const { getByID } = require('../../models/user.model');
 const { checkToken, checkRole } = require('../../utils/middlewares');
@@ -44,12 +44,9 @@ router.get('/', checkToken,checkRole('admin'),async (req, res) => {
 
 router.post('/', checkToken,checkRole('alumno'), async (req, res) => {
     try {
-        const [coor] = await geocoder.geocode(req.body.direccion);
-        req.body.latitud = coor.latitude;
-        req.body.longitud = coor.longitude;
-        const [result] = await createDatos(req.body);
+  
         await createAlumno(req.body)
-        const [alumno] = await getById(result.insertId);
+        const [alumno] = await getByUserId(req.body.usuario_id);
         res.json(alumno[0]);
 
     } catch (error) {

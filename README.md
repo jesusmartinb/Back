@@ -10,16 +10,6 @@ POST `https://teachers-groupb.herokuapp.com/api/teachers`
 Header: TOKEN
 ```json
 {
-    "nombre": "Laura",
-    "apellidos": "González Sánchez",
-    "fecha_nacimiento": "1984-06-04 00:00:00",
-    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-    "direccion": "Calle Mayor 2",
-    "ciudad": "Bilbao",
-    "codigo_postal": 48002,
-    "longitud": "-2.934614",
-    "latitud": "43.262378",
-    "telefono": "944123456",
     "usuario_id": 1016,
     "cuota": "65",
     "experiencia": "Experta en enseñanza de idiomas"
@@ -31,21 +21,14 @@ Header: TOKEN
 ```json
 {
   "id": 51,
-  "nombre": "Laura",
-  "apellidos": "González Sánchez",
-  "fecha_nacimiento": "1984-06-04T00:00:00.000Z",
-  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-  "direccion": "Calle Mayor 2",
-  "ciudad": "Bilbao",
-  "codigo_postal": 48001,
-  "longitud": "-2.934614",
-  "latitud": "43.262378",
-  "telefono": "944123456",
+  "usuario_id": 1016,
+  "cuota": "65",
+  "experiencia": "Experta en enseñanza de idiomas",
+  "status":0
 }
 ```
-
-## CREATE NEW STUDENT   (ALUMNO)
-POST `https://teachers-groupb.herokuapp.com/api/alumno`
+## CREATE NEW TEACHER  PERSONAL DATA (PROFESOR)
+POST `https://teachers-groupb.herokuapp.com/api/personal/teacher`
 
 ### REQUEST
 Header: TOKEN
@@ -58,7 +41,34 @@ Header: TOKEN
     "direccion": "Calle Mayor 2",
     "ciudad": "Bilbao",
     "codigo_postal": 48001,
-    "telefono": "925427859",
+    "telefono": "924422879",
+    "usuario_id": 1049
+}
+```
+### RESPONSE 
+```json
+{
+    "id":100,
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "telefono": "924422879",
+    "usuario_id": 1049
+}
+
+
+
+## CREATE NEW STUDENT   (ALUMNO)
+POST `https://teachers-groupb.herokuapp.com/api/alumno`
+
+### REQUEST
+Header: TOKEN
+```json
+{
     "usuario_id": 291,
     "estudia" : "Ingenieria"
 }
@@ -68,19 +78,45 @@ Header: TOKEN
 ```json
 {
   "id": 371,
-  "nombre": "Laura",
-  "apellidos": "González Sánchez",
-  "fecha_nacimiento": "1984-06-03T22:00:00.000Z",
-  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-  "direccion": "Calle Mayor 2",
-  "ciudad": "Bilbao",
-  "codigo_postal": 48001,
-  "longitud": "-118.3893411",
-  "latitud": "33.8082632",
-  "telefono": "925427859",
-  "usuario_id": 291
+    "usuario_id": 291,
+    "estudia" : "Ingenieria",
+    "status": 1
 }
 ```
+## CREATE NEW STUDENT  PERSONAL DATA (ALUMNO)
+POST `https://teachers-groupb.herokuapp.com/api/personal/alumno`
+
+### REQUEST
+Header: TOKEN
+```json
+{
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "telefono": "924422879",
+    "usuario_id": 1049
+}
+```
+### RESPONSE 
+```json
+{
+    "id":100,
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "telefono": "924422879",
+    "usuario_id": 1049
+}
+
+
 
 2. ## Login de acceso a usuarios.
 
@@ -478,5 +514,46 @@ Header: TOKEN
 2. ## Sistema de mensajes (no chat en tiempo real) donde un alumno se puede
 comunicar con su profesor y viceversa, tipo Wallapop.
 
-PENDIENTE
+Nota: Tanto el remitente como destinatario se refiere a Usuario_id
 
+## Insert Message (LOGEADO)
+POST `https://teachers-groupb.herokuapp.com/api/chat/enviarMensaje`
+
+### REQUEST
+Header: TOKEN
+```json
+{
+  "remitente": 201,
+  "destinatario": 121,
+  "contenido": "tiene un segundo"
+}
+```
+
+## Get Message (LOGEADO)
+### REQUEST
+Header: TOKEN
+```json
+{
+  "remitente": 201,
+  "destinatario": 121
+ 
+}
+```
+### RESPONSE
+```json
+[
+  {
+    "id": 21,
+    "remitente": 201,
+    "destinatario": 121,
+    "mensaje": "tiene un segundo",
+    "fecha_act": "2023-05-10T11:35:56.000Z"
+  },
+  {
+    "id": 11,
+    "remitente": 201,
+    "destinatario": 121,
+    "mensaje": "buenas tardes",
+    "fecha_act": "2023-05-10T11:35:48.000Z"
+  }]
+  ```

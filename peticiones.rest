@@ -29,7 +29,18 @@ GET {{host}}/api/clase/1001
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NjE4MywiaWF0IjoxNjgzNjY1ODgzfQ.cGM_i2B_294Dm_HQPZUkn7z2XYOfJYfufQfAPjfU7m4
 ###
 POST {{host}}/api/teachers
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4MzY2MTY2MiwiaWF0IjoxNjgzNjYxMzYyfQ.Fslzb1S5DFybfxy--CMZHw6rZIYcxlZbT1dMq2OrtlU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4MzgwMzE3NCwiaWF0IjoxNjgzODAyNTc0fQ.k3gNyms5okLaQPzbF_S3r-TiYgK0PyO8q7TezPfso3I
+Content-Type: application/json
+
+{
+    "usuario_id": 1099,
+    "cuota": 65,
+    "experiencia": "Muchos años de experiencia"
+}
+
+### Crear datos personales profesor
+POST {{host}}/api/personal/teacher
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4MzgwMTI5MywiaWF0IjoxNjgzODAwNjkzfQ.p_l85F3TsozxM1Zp8J-9OmqmVbLE17sUguYFfMvFn_E
 Content-Type: application/json
 
 {
@@ -40,11 +51,38 @@ Content-Type: application/json
     "direccion": "Calle Mayor 2",
     "ciudad": "Bilbao",
     "codigo_postal": 48001,
-    "telefono": "924422859",
-    "usuario_id": 1049,
-    "cuota": 65,
-    "experiencia": "Muchos años de experiencia"
+    "telefono": "924422879",
+    "usuario_id": 1049
 }
+
+### Crear datos personales alumno
+POST {{host}}/api/personal/alumno
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzgwMTgxNCwiaWF0IjoxNjgzODAxMjE0fQ.Y-g5TtayIn07werx7BfHFu4Vngp6PWoq-jdjeSgrhoo
+Content-Type: application/json
+
+{
+    "nombre": "Laura",
+    "apellidos": "González Sánchez",
+    "fecha_nacimiento": "1984-06-04 00:00:00",
+    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+    "direccion": "Calle Mayor 2",
+    "ciudad": "Bilbao",
+    "codigo_postal": 48001,
+    "telefono": "924422879",
+    "usuario_id": 1049
+}
+
+### crear alumno
+POST {{host}}/api/alumno
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzgwMzUzMywiaWF0IjoxNjgzODAyOTMzfQ.92jCXWKRqajfzo3_nK5wKEoC1E1Y5EG5SN18jnbvmZQ
+Content-Type: application/json
+
+{
+    "usuario_id": 1099,
+    "estudia" : "Ingenieria"
+}
+
+
 ###
 PUT {{host}}/api/teachers/11
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTY4MzM4OTkyOCwiaWF0IjoxNjgzMzg5NjI4fQ.rAmXfgGMusUkMM0btm8qn6evMZ6N-CHY00TWp6z86ls
@@ -113,23 +151,6 @@ GET {{host}}/api/alumno
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjgzNzA2MjIxLCJpYXQiOjE2ODM3MDU5MjF9.Vi7arufgWRMdCxhloE3GFCFT1_TSKTL5EBivz7ypl-s
 
 
-### CREA ALUMNO
-POST {{host}}/api/alumno
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOTEsImV4cCI6MTY4MzcwNTIxMywiaWF0IjoxNjgzNzA0OTEzfQ.ynkhdFfwdQC3RqK4FJ1HxwCLg5meW4bkgMxp64WcuGE
-Content-Type: application/json
-
-{
-    "nombre": "Laura",
-    "apellidos": "González Sánchez",
-    "fecha_nacimiento": "1984-06-04 00:00:00",
-    "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
-    "direccion": "Calle Mayor 2",
-    "ciudad": "Bilbao",
-    "codigo_postal": 48001,
-    "telefono": "925427859",
-    "usuario_id": 291,
-    "estudia" : "Ingenieria"
-}
 
 ### SET STUDENT INACTIVE
 PUT {{host}}/api/alumno/inactive/151
@@ -137,15 +158,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjox
 
 ### TRAE LOS DATOS DE Un ALUMNO
 GET {{host}}/api/alumno/161
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcwODUxNSwiaWF0IjoxNjgzNzA4MjE1fQ.I6pUFMZkYedsPScDxI1LdDxPpB6WDQsPXdQ0CGnUPK8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMzY0NiwiaWF0IjoxNjgzNzEzMzQ2fQ.NppmGBAQzrUFslP6KEcKIG8ROQIRgKSlw82ub7DjKdI
 
 ### GET ALL TECAHERS ACTIVE
 GET {{host}}/api/teachers/active
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMDc0MCwiaWF0IjoxNjgzNzEwNDQwfQ.EwIaoTlxa9B8wrDhOu7jbjc930w4P3CNbgCEyuSviR4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMzY0NiwiaWF0IjoxNjgzNzEzMzQ2fQ.NppmGBAQzrUFslP6KEcKIG8ROQIRgKSlw82ub7DjKdI
 
 ### GET EXIST TEACHER STUDENT
 GET {{host}}/api/clase/exist
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMjM4OCwiaWF0IjoxNjgzNzEyMDg4fQ.FXL9LhssT-EGek5I-hdt3hg1P11NcAD5-EpWG-VtoQI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMzY0NiwiaWF0IjoxNjgzNzEzMzQ2fQ.NppmGBAQzrUFslP6KEcKIG8ROQIRgKSlw82ub7DjKdI
 Content-Type: application/json
 
 {
@@ -165,4 +186,25 @@ Content-Type: application/json
   "puntuacion": 10,
   "opinion": "excelente"
 
+}
+
+### INSERT CHAT
+POST {{host}}/api/chat/enviarMensaje
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcyNTgxOSwiaWF0IjoxNjgzNzI1NTE5fQ.9Y4xPzTn_KVvY6bb8YAqLBVimenWQDtIqUXdRvA6IWI
+Content-Type: application/json
+
+{
+  "remitente": 201,
+  "destinatario": 121,
+  "contenido": "tiene un segundo"
+}
+
+### GET CHAT
+GET {{host}}/api/chat
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcyNjk5MywiaWF0IjoxNjgzNzI2NjkzfQ._KEpzpWClutjj0nLzBv9gcH8_N059fCYMgTOlRKoim8
+Content-Type: application/json
+
+{
+  "remitente": 201,
+  "destinatario": 121
 }
