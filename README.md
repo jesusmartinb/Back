@@ -557,3 +557,96 @@ Header: TOKEN
     "fecha_act": "2023-05-10T11:35:48.000Z"
   }]
   ```
+
+  # OTROS
+
+  ## GET nivel (LOGEADO)
+GET `https://teachers-groupb.herokuapp.com/api/clase/nivel`
+
+### REQUEST
+Header: TOKEN
+### RESPONSE
+```json
+[
+  {
+    "id": 1,
+    "nivel": "bajo",
+    "usuario_id": 201
+  },
+  {
+    "id": 11,
+    "nivel": "alto",
+    "usuario_id": 202
+  }
+]
+```
+
+  ## GET rama (LOGEADO)
+GET `https://teachers-groupb.herokuapp.com/api/clase/rama`
+
+### REQUEST
+Header: TOKEN
+### RESPONSE
+```json
+[
+  {
+    "id": 1,
+    "usuario_id": 202,
+    "materia": "literatura"
+  },
+  {
+    "id": 11,
+    "usuario_id": 201,
+    "materia": "Matematica"
+  }
+]
+```
+
+## create nivel (LOGEADO)
+POST `https://teachers-groupb.herokuapp.com/api/clase/nivel`
+
+### REQUEST
+Header: TOKEN
+```json
+{
+  "usuario_id": 202,
+  "nivel": "alto"
+}
+```
+### RESPONSE
+```json
+{
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 21,
+  "info": "",
+  "serverStatus": 2,
+  "warningStatus": 0
+}
+```
+
+
+## create nivel (LOGEADO)
+POST `https://teachers-groupb.herokuapp.com/api/clase/rama`
+
+### REQUEST
+Header: TOKEN
+```json
+{
+  "usuario_id": 201,
+  "materia": "Matematica"
+}
+
+```
+
+### RESPONSE
+```json
+{
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 21,
+  "info": "",
+  "serverStatus": 2,
+  "warningStatus": 0
+}
+```
