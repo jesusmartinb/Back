@@ -57,7 +57,7 @@ Content-Type: application/json
 
 ### Crear datos personales alumno
 POST {{host}}/api/personal/alumno
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzgwMTgxNCwiaWF0IjoxNjgzODAxMjE0fQ.Y-g5TtayIn07werx7BfHFu4Vngp6PWoq-jdjeSgrhoo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzgwNDMzNiwiaWF0IjoxNjgzODAzNzM2fQ.n3jTvntDflSyROHKdn1SYaLe3jEVt-ofpJ4ZejpuKoI
 Content-Type: application/json
 
 {
@@ -74,7 +74,7 @@ Content-Type: application/json
 
 ### crear alumno
 POST {{host}}/api/alumno
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzgwMzUzMywiaWF0IjoxNjgzODAyOTMzfQ.92jCXWKRqajfzo3_nK5wKEoC1E1Y5EG5SN18jnbvmZQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzgwNDMzNiwiaWF0IjoxNjgzODAzNzM2fQ.n3jTvntDflSyROHKdn1SYaLe3jEVt-ofpJ4ZejpuKoI
 Content-Type: application/json
 
 {
@@ -208,3 +208,31 @@ Content-Type: application/json
   "remitente": 201,
   "destinatario": 121
 }
+
+### post nivel
+POST {{host}}/api/clase/nivel
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NTA1OSwiaWF0IjoxNjgzOTY0NDU5fQ.pXqIguXgXQ6je_KJECJDmurqQRPyBt38rbd1RdfYuC8
+Content-Type: application/json
+
+{
+  "usuario_id": 203,
+  "nivel": "alto"
+}
+
+###
+GET  {{host}}/api/clase/nivel
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NjI0MCwiaWF0IjoxNjgzOTY1NjQwfQ.XY00Pp14SSZpH7Ol0S43MZTdQc1nEW9HIoVBGyQtPTo
+
+### post nivel
+POST {{host}}/api/clase/rama
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NjQwNSwiaWF0IjoxNjgzOTY1ODA1fQ.Y_NjnMFMQRSAgWCsYva41thjfdKv_mJqgSVB0jsUCXM
+Content-Type: application/json
+
+{
+  "usuario_id": 204,
+  "materia": "Matematicas"
+}
+
+###
+GET  {{host}}/api/clase/rama
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NTkyOSwiaWF0IjoxNjgzOTY1MzI5fQ.F8aWwyYwa7P_MyLXck6wtZJ2JaURuItFJVIMiwkjzbw

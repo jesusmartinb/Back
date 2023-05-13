@@ -1,4 +1,4 @@
-const {  getAlumnosbyUser, getAlumbyAlumnoId, getTeacherByStudent } = require('../../models/clase.model');
+const {  getAlumnosbyUser, getAlumbyAlumnoId, getTeacherByStudent, CreateNivel, getNivel, getRama, createRama } = require('../../models/clase.model');
 const { checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -12,6 +12,25 @@ router.get('/exist',checkToken,checkRole('alumno'), async (req, res) => {
 
 
 });
+
+router.get('/nivel',checkToken, async (req, res) => {
+    try {
+        const [result] = await getNivel();
+        res.json(result);
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+});
+
+router.get('/rama',checkToken, async (req, res) => {
+    try {
+        const [result] = await getRama();
+        res.json(result);
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+});
+
 
 router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
     const {userId} = req.params;
@@ -31,6 +50,28 @@ router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
     } catch (error) {
         res.json({fatal: error.message});
     }
+})
+
+
+
+router.post('/nivel', checkToken, async( req,res) => {
+    try {
+    const [result] = await CreateNivel(req.body); 
+    res.json(result)
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+
+})
+
+router.post('/rama', checkToken, async( req,res) => {
+    try {
+    const [result] = await createRama(req.body); 
+    res.json(result)
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+
 })
 
 
