@@ -236,3 +236,6 @@ Content-Type: application/json
 ###
 GET  {{host}}/api/clase/rama
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NTkyOSwiaWF0IjoxNjgzOTY1MzI5fQ.F8aWwyYwa7P_MyLXck6wtZJ2JaURuItFJVIMiwkjzbw
+
+###
+GET  {{host}}/api/puntuacion
