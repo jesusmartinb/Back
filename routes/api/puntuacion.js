@@ -1,5 +1,5 @@
 const { score, create } = require('../../models/puntuacion.model');
-const { getById } = require('../../models/teachers.model');
+const {   getById } = require('../../models/teachers.model');
 const { checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
             const [teacher] = await getById(result.id_profesor);
             const {nombre, apellidos, foto} = teacher[0];
             result.teacher = {nombre, apellidos, foto};
+            
         }
 
          res.json(results);
