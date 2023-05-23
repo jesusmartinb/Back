@@ -175,7 +175,7 @@ Header: TOKEN
 3. ## Parte publica de la web, donde veras un mapa con los profesores que tienes cerca de u ubicación y un listado con los profesores mejor puntuados.
 
 ## GET TEACHERS 5 NEAR LOCATION (PUBLIC)
-GET https://teachers-groupb.herokuapp.com/api/teachers/map
+POST https://teachers-groupb.herokuapp.com/api/teachers/map
 
 ### REQUEST
 ```json

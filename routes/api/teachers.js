@@ -33,7 +33,7 @@ router.get('/', checkToken,checkRole('admin'),async (req, res) => {
 router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
     try {
         const [items] = await getAllActive();
-        const perPage = 5; // número de elementos por página
+        const perPage = 4; // número de elementos por página
         let page = req.query.page || 1; // página solicitada (por defecto es la primera)
         page = parseInt(page); 
         const startIndex = (page - 1) * perPage; // índice de inicio de la página
@@ -52,7 +52,7 @@ router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
     
 })
 
-router.get('/map', async (req, res) => {
+router.post('/map', async (req, res) => {
      
     const [coor] = await geocoder.geocode(req.body.direccion);
     

@@ -8,5 +8,6 @@ router.use('/clase', require('./api/clase'));
 router.use('/chat', require('./api/chat'));
 router.use('/alumno', require('./api/alumno'));
 router.use('/personal', require('./api/personal'));
+router.use('/admin', require('./api/admin'));
 
 module.exports = router;
