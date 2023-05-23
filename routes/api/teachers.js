@@ -4,6 +4,7 @@ const {checkToken, checkRole } = require('../../utils/middlewares');
 const router = require('express').Router();
 const math = require('mathjs');
 const { geocoder } = require('../../config/geocoder');
+const { getUserByAlumnoId } = require('../../models/alumno.model');
 
 
 
@@ -33,7 +34,7 @@ router.get('/', checkToken,checkRole('admin'),async (req, res) => {
 router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
     try {
         const [items] = await getAllActive();
-        const perPage = 5; // número de elementos por página
+        const perPage = 4; // número de elementos por página
         let page = req.query.page || 1; // página solicitada (por defecto es la primera)
         page = parseInt(page); 
         const startIndex = (page - 1) * perPage; // índice de inicio de la página
@@ -52,7 +53,7 @@ router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
     
 })
 
-router.get('/map', async (req, res) => {
+router.post('/map', async (req, res) => {
      
     const [coor] = await geocoder.geocode(req.body.direccion);
     
@@ -83,9 +84,12 @@ router.get('/user/:userId',checkToken,checkRole('profesor'), async (req,res) => 
     const {userId} = req.params;
     try {
        const [result] = await getByTeacherId(userId);
+       const [teacher] = await getUserByAlumnoId(userId);
        if (result.length===0) {
             return res.json({ fatal: 'No existe un profesor con ese ID'});
        }
+        result[0].username = teacher[0].username;
+        result[0].email = teacher[0].email;
         res.json(result[0]);
     } catch (error) {
         res.json({fatal: error.message});

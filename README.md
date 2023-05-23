@@ -175,7 +175,7 @@ Header: TOKEN
 3. ## Parte publica de la web, donde veras un mapa con los profesores que tienes cerca de u ubicación y un listado con los profesores mejor puntuados.
 
 ## GET TEACHERS 5 NEAR LOCATION (PUBLIC)
-GET https://teachers-groupb.herokuapp.com/api/teachers/map
+POST https://teachers-groupb.herokuapp.com/api/teachers/map
 
 ### REQUEST
 ```json
@@ -648,5 +648,27 @@ Header: TOKEN
   "info": "",
   "serverStatus": 2,
   "warningStatus": 0
+}
+```
+
+
+## Otros
+
+## GET admin by ID (ADMIN)
+GET `https://teachers-groupb.herokuapp.com/api/admin/USUARIO_ID`
+
+### REQUEST
+Header: TOKEN
+
+### RESPONSE
+```json
+{
+  "id": 91,
+  "nombre": "Daniel",
+  "apellidos": "Perez",
+  "usuario_id": 91,
+  "username": "dc1",
+  "email": "dc1@gmail.com",
+  "role": "admin"
 }
 ```

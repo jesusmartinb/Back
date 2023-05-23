@@ -1,5 +1,5 @@
 const { geocoder } = require('../../config/geocoder');
-const { createAlumno, getAll, setInactive, getByStudentId, getByUserId } = require('../../models/alumno.model');
+const { createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId } = require('../../models/alumno.model');
 const { createDatos, getById } = require('../../models/teachers.model');
 const { getByID } = require('../../models/user.model');
 const { checkToken, checkRole } = require('../../utils/middlewares');
@@ -10,9 +10,12 @@ router.get('/:userId',checkToken,checkRole('alumno'), async (req,res) => {
     const {userId} = req.params;
     try {
        const [result] = await getByStudentId(userId);
+       const [alumno] = await getUserByAlumnoId(userId);
        if (result.length===0) {
             return res.json({ fatal: 'No existe un alumno con ese ID'});
        }
+       result[0].username = alumno[0].username;
+       result[0].email = alumno[0].email;
         res.json(result[0]);
     } catch (error) {
         res.json({fatal: error.message});
