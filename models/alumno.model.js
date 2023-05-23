@@ -28,9 +28,13 @@ const getByStudentId = (studentId) => {
         'select * from datos_personales INNER JOIN alumno  ON datos_personales.usuario_id = alumno.usuario_id WHERE alumno.usuario_id= ?',[studentId]);
     }
 
+const getUserByAlumnoId = (usuario_id) => {
+        return db.query(
+            'select * from usuario  where id= ?',[usuario_id]);
+        }
 
 
 module.exports = {
-    createAlumno, getAll, setInactive, getByStudentId, getByUserId
+    createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId
     
 }

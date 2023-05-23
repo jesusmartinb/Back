@@ -4,6 +4,7 @@ const {checkToken, checkRole } = require('../../utils/middlewares');
 const router = require('express').Router();
 const math = require('mathjs');
 const { geocoder } = require('../../config/geocoder');
+const { getUserByAlumnoId } = require('../../models/alumno.model');
 
 
 
@@ -83,9 +84,12 @@ router.get('/user/:userId',checkToken,checkRole('profesor'), async (req,res) => 
     const {userId} = req.params;
     try {
        const [result] = await getByTeacherId(userId);
+       const [teacher] = await getUserByAlumnoId(userId);
        if (result.length===0) {
             return res.json({ fatal: 'No existe un profesor con ese ID'});
        }
+        result[0].username = teacher[0].username;
+        result[0].email = teacher[0].email;
         res.json(result[0]);
     } catch (error) {
         res.json({fatal: error.message});

@@ -650,3 +650,25 @@ Header: TOKEN
   "warningStatus": 0
 }
 ```
+
+
+## Otros
+
+## GET admin by ID (ADMIN)
+GET `https://teachers-groupb.herokuapp.com/api/admin/USUARIO_ID`
+
+### REQUEST
+Header: TOKEN
+
+### RESPONSE
+```json
+{
+  "id": 91,
+  "nombre": "Daniel",
+  "apellidos": "Perez",
+  "usuario_id": 91,
+  "username": "dc1",
+  "email": "dc1@gmail.com",
+  "role": "admin"
+}
+```
