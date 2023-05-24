@@ -1,11 +1,14 @@
-@host = http://localhost:3000
-//@host = https://teachers-groupb.herokuapp.com
+//@host = http://localhost:3000
+@host = https://teachers-groupb.herokuapp.com
+
+
+### GET teacher by alumno
+GET  {{host}}/api/alumno/teachers/151
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NDk1ODUwNywiaWF0IjoxNjg0OTQ0MTA3fQ.RFFLgE19GVYCSBz1Gfa9rXumGaAGG8gHcl2B2XeDBbQ
 
 ### GET ADMIN BY ID
-GET  {{host}}/api/admin/91
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg0ODUxMzQwLCJpYXQiOjE2ODQ4NTA3NDB9.u0Kr1QIZldrEwW2n9Xo-cUzkvE9JQ_Hx9EHIOVtwNtg
-
-
+GET  {{host}}/api/admin/141
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg0OTM0MTUxLCJpYXQiOjE2ODQ5MTk3NTF9.sqrG0YEWNyfivqcFCvfY61bNhABIqiawXUcQ3mlO7xw
 ### GET BEST SCORE
 GET {{host}}/api/puntuacion
 ### GET INACTIVE
@@ -25,8 +28,7 @@ GET {{host}}/api/teachers/6
 
 ### GET TEACHER BY USERID
 GET {{host}}/api/teachers/user/1002
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4NDg4NDAxMiwiaWF0IjoxNjg0ODY5NjEyfQ.Rr3FiAqjE49RVglBojfbPd2JT-Y7dUcimqT7xMXbLN8
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4NDg4NDMwNSwiaWF0IjoxNjg0ODY5OTA1fQ.l7KABd9nb6VGJSScwP3RSR2O-5DyJwy3wv4-JqIlY80
 ### GET ALUMNOS BY USUAIO_ID
 GET {{host}}/api/clase/1002
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4NDg1NzQ2MSwiaWF0IjoxNjg0ODU2ODYxfQ.gcxykKdmVsOLeplwufAroyvYk6_9snFlN6pB4IfEiE4
@@ -141,7 +143,7 @@ POST   {{host}}/api/users/login
 Content-Type: application/json
 
 {
-  "email": "dc12@gmail.com",
+  "email": "dc6@gmail.com",
   "password": "12345"
 }
 

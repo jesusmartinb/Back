@@ -672,3 +672,41 @@ Header: TOKEN
   "role": "admin"
 }
 ```
+
+## GET teachers by alumno (ALUMNO)
+GET  `https://teachers-groupb.herokuapp.com/api/alumno/teachers/USUARIO_ID`
+
+### REQUEST
+Header: TOKEN
+
+```json
+  {
+    "id": 1,
+    "profesor_id": 1,
+    "alumno_id": 1,
+    "rama_co_id": 1,
+    "nivel_id": 1,
+    "cuota": "50.00",
+    "experiencia": "Especialista en matemáticas",
+    "usuario_id": 1001,
+    "status": 1,
+    "datos_per": {
+      "id": 1001,
+      "nombre": "Juan",
+      "apellidos": "García López",
+      "fecha_nacimiento": "1985-05-12T00:00:00.000Z",
+      "foto": "https://i.pravatar.cc/500?u=norma.torresnevarez@peticiones.online",
+      "direccion": "Calle Mayor 10",
+      "ciudad": "Madrid",
+      "codigo_postal": 28013,
+      "longitud": "-3.705307",
+      "latitud": "40.416878",
+      "telefono": "910123456",
+      "usuario_id": 1001,
+      "username": "dc20",
+      "email": "dc20@gmail.com",
+      "role": "profesor"
+    }
+  }
+
+```
