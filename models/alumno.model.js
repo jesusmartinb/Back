@@ -33,8 +33,25 @@ const getUserByAlumnoId = (usuario_id) => {
             'select * from usuario  where id= ?',[usuario_id]);
         }
 
+const getAlumnoByUserId = (usuario_id) => {
+    return db.query(
+        'select * from alumno  where usuario_id= ?',[usuario_id]);
+    }
+
+const getTeachersbyAlum = (alumnoId) => {
+    return db.query(
+        'select * from clase INNER JOIN profesor ON clase.profesor_id = profesor.id  where clase.alumno_id= ?',[alumnoId]);
+    }
+
+const getDatosbyUserId = (usuario_id) => {
+    return db.query(
+        'select * from datos_personales INNER JOIN usuario ON datos_personales.usuario_id = usuario.id where datos_personales.usuario_id= ?',[usuario_id]);
+    }
+
+
 
 module.exports = {
-    createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId
+    createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId,
+    getAlumnoByUserId,getTeachersbyAlum, getDatosbyUserId
     
 }
