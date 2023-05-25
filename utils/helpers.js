@@ -12,6 +12,23 @@ const createToken = (user) => {
 
 }
 
+const createPages = (items, req) => {
+    let page = req.query.page || 1;
+    const perPage = 4; // número de elementos por página
+   // let page = req.query.page || 1; // página solicitada (por defecto es la primera)
+    page = parseInt(page); 
+    const startIndex = (page - 1) * perPage; // índice de inicio de la página
+    const endIndex = startIndex + perPage; // índice final de la página
+    const results = items.slice(startIndex, endIndex); // elementos de la página solicitada
+    return {
+        page,
+        perPage,
+        totalItems: items.length,
+        totalPages: Math.ceil(items.length / perPage),
+        results
+    };
+}
+
 module.exports = {
-    createToken
+    createToken, createPages
 }

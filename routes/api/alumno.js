@@ -2,6 +2,7 @@ const { geocoder } = require('../../config/geocoder');
 const { createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId, getAlumnoByUserId, getTeachersbyAlum, getDatosbyUserId } = require('../../models/alumno.model');
 const { createDatos, getById } = require('../../models/teachers.model');
 const { getByID } = require('../../models/user.model');
+const { createPages } = require('../../utils/helpers');
 const { checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -9,19 +10,7 @@ const router = require('express').Router();
 router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     try {
         const [items] = await getAll();
-        const perPage = 5; // número de elementos por página
-        let page = req.query.page || 1; // página solicitada (por defecto es la primera)
-        page = parseInt(page); 
-        const startIndex = (page - 1) * perPage; // índice de inicio de la página
-        const endIndex = startIndex + perPage; // índice final de la página
-        const results = items.slice(startIndex, endIndex); // elementos de la página solicitada
-        res.json({
-            page,
-            perPage,
-            totalItems: items.length,
-            totalPages: Math.ceil(items.length / perPage),
-            results
-        });
+        res.json(createPages(items,req));
     } catch (error) {
         res.json({fatal: error.message});
     }

@@ -1,10 +1,11 @@
-const {  getById, getMap, getAllInactive, setActive, createProfesor, createDatos, getByTeacherId, getAllActive, getByUserId } = require('../../models/teachers.model');
+const {  getById, getMap, getAllInactive, setActive, createProfesor, getByTeacherId, getAllActive, getByUserId, getAll, getUserbyId, setInactive } = require('../../models/teachers.model');
 const {checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
 const math = require('mathjs');
 const { geocoder } = require('../../config/geocoder');
 const { getUserByAlumnoId } = require('../../models/alumno.model');
+const { createPages } = require('../../utils/helpers');
 
 
 
@@ -12,45 +13,82 @@ const { getUserByAlumnoId } = require('../../models/alumno.model');
 router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     try {
         const [items] = await getAllInactive();
-        const perPage = 5; // número de elementos por página
-        let page = req.query.page || 1; // página solicitada (por defecto es la primera)
-        page = parseInt(page); 
-        const startIndex = (page - 1) * perPage; // índice de inicio de la página
-        const endIndex = startIndex + perPage; // índice final de la página
-        const results = items.slice(startIndex, endIndex); // elementos de la página solicitada
-        res.json({
-            page,
-            perPage,
-            totalItems: items.length,
-            totalPages: Math.ceil(items.length / perPage),
-            results
-        });
+
+        res.json(createPages(items,req));
     } catch (error) {
         res.json({fatal: error.message});
     }
     
 })
 
+router.get('/all', checkToken,checkRole('admin'),async (req, res) => {
+    try {
+        [result] = await getAll();
+        const errors = [];
+        const list = await Promise.all(result.map(async (profesor) => {
+            const [datos] = await getUserbyId(profesor.usuario_id);
+            
+            if (datos[0] === undefined) {
+                errors.push({ fatal: 'No existe el usuario:' + profesor.usuario_id });
+            } else {
+                delete datos[0].password;
+
+            }            
+            profesor.datos_per = datos[0];
+            return profesor;
+        }));
+        if (errors.length > 0) {
+            res.json({ errors });
+          } else {
+           res.json(createPages(result,req));
+          }
+       
+
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+
+});
+
 router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
     try {
         const [items] = await getAllActive();
-        const perPage = 4; // número de elementos por página
-        let page = req.query.page || 1; // página solicitada (por defecto es la primera)
-        page = parseInt(page); 
-        const startIndex = (page - 1) * perPage; // índice de inicio de la página
-        const endIndex = startIndex + perPage; // índice final de la página
-        const results = items.slice(startIndex, endIndex); // elementos de la página solicitada
-        res.json({
-            page,
-            perPage,
-            totalItems: items.length,
-            totalPages: Math.ceil(items.length / perPage),
-            results
-        });
+        res.json(createPages(items,req)
+           
+        );
     } catch (error) {
         res.json({fatal: error.message});
     }
     
+})
+router.get('/user/:userId',checkToken,checkRole('profesor'), async (req,res) => {
+    const {userId} = req.params;
+    try {
+       const [result] = await getByTeacherId(userId);
+       const [teacher] = await getUserByAlumnoId(userId);
+       if (result.length===0) {
+            return res.json({ fatal: 'B No existe un profesor con ese ID'});
+       }
+        result[0].username = teacher[0].username;
+        result[0].email = teacher[0].email;
+        res.json(result[0]);
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
+
+
+router.get('/:teacherId', async (req, res) => {
+    const {teacherId} = req.params;
+    try {
+       const [result] = await getById(teacherId);
+       if (result.length===0) {
+            return res.json({ fatal: ' A No existe un profesor con ese ID'});
+       }
+        res.json(result);
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
 })
 
 router.post('/map', async (req, res) => {
@@ -80,35 +118,6 @@ router.post('/map', async (req, res) => {
     }
 })
 
-router.get('/user/:userId',checkToken,checkRole('profesor'), async (req,res) => {
-    const {userId} = req.params;
-    try {
-       const [result] = await getByTeacherId(userId);
-       const [teacher] = await getUserByAlumnoId(userId);
-       if (result.length===0) {
-            return res.json({ fatal: 'No existe un profesor con ese ID'});
-       }
-        result[0].username = teacher[0].username;
-        result[0].email = teacher[0].email;
-        res.json(result[0]);
-    } catch (error) {
-        res.json({fatal: error.message});
-    }
-})
-
-
-router.get('/:teacherId', async (req, res) => {
-    const {teacherId} = req.params;
-    try {
-       const [result] = await getById(teacherId);
-       if (result.length===0) {
-            return res.json({ fatal: 'No existe un profesor con ese ID'});
-       }
-        res.json(result);
-    } catch (error) {
-        res.json({fatal: error.message});
-    }
-})
 
 router.post('/', checkToken,checkRole('profesor'), async (req, res) => {
     try {
@@ -134,6 +143,16 @@ router.put('/active/:userId',checkToken,checkRole('admin'), async (req, res) => 
         }
 })
 
+router.put('/inactive/:userId',checkToken,checkRole('admin'), async (req, res) => {
+    try {
+        const {userId} = req.params;
+        await setInactive(userId);
+        const [teacher] = await getByTeacherId(userId)
+        res.json(teacher[0]);
+        } catch (error) {
+        res.json({fatal: error.message});
+        }
+})
 
 
 

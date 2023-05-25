@@ -12,6 +12,9 @@ const getAllActive = () => {
     return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id where profesor.status=1');
 }
 
+const getAll = () => {
+    return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id');
+}
 
 
 const getByTeacherId = (teacherId) => {
@@ -23,6 +26,12 @@ const getById = (teacherId) => {
         return db.query(
             'select * from datos_personales INNER JOIN profesor  ON datos_personales.usuario_id = profesor.usuario_id WHERE profesor.id= ?',[teacherId]);
         }
+
+const getUserbyId = (usuario_id) => {
+    return db.query(
+        'select * from usuario  WHERE id= ?',[usuario_id]);
+    
+}
     
 
 const getByUserId = (userId) => {
@@ -45,6 +54,13 @@ const setActive = (teacherId) => {
     )
 }
 
+const setInactive = (teacherId) => {
+    return db.query(
+        'update profesor set status="0" where usuario_id = ?',
+        [teacherId]
+    )
+}
+
 const update = (teacherId,{nombre, apellidos, fecha_nacimiento, foto, direccion, ciudad, codigo_postal, longitud, latitud,telefono, cuota, experiencia})  => {
     return db.query(
         'update profesor set nombre=?, apellidos = ?, fecha_nacimiento = ?, foto = ?, direccion = ?, ciudad = ?, codigo_postal = ?, longitud = ?, latitud = ?,telefono = ?, cuota = ?, experiencia = ?  where id = ?',
@@ -59,5 +75,6 @@ const deleteById = (teacherId)  => {
 
 module.exports = {
     getAllInactive, update, deleteById, getMap,getById,
-    setActive, getByUserId, createProfesor, getByTeacherId, getAllActive
+    setActive, getByUserId, createProfesor, getByTeacherId, getAllActive, getAll, getUserbyId,
+    setInactive
 }

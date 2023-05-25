@@ -1,6 +1,18 @@
-//@host = http://localhost:3000
-@host = https://teachers-groupb.herokuapp.com
+@host = http://localhost:3000
+//@host = https://teachers-groupb.herokuapp.com
 
+### API LOGIN  admin 1, alumno 6, profesor 12 
+POST   {{host}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "dc1@gmail.com",
+  "password": "12345"
+}
+
+### Get all teachers
+GET  {{host}}/api/teachers/all?page=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDMzMjgyLCJpYXQiOjE2ODUwMTg4ODJ9.LZIS8ZZOXCKpoYNy0W7Efz4wRpEDEf-yNmtjE_EjXr0
 
 ### GET teacher by alumno
 GET  {{host}}/api/alumno/teachers/151
@@ -12,9 +24,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjox
 ### GET BEST SCORE
 GET {{host}}/api/puntuacion
 ### GET INACTIVE
-GET {{host}}/api/teachers?page=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTY4MzY0MjI3NSwiaWF0IjoxNjgzNjQxOTc1fQ.FmEvagAAE-sWIiFTjbWeyU96TgerDkYWnB3jUqNHC0o
-
+GET {{host}}/api/teachers?page=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDQ0MzQ1LCJpYXQiOjE2ODUwMjk5NDV9.ZZ21LCP1QNqGyZhjrIHNt6PDQ_LYeArfg1zSwio9sAk
 ### GET TEACHER ADDRESS
 POST {{host}}/api/teachers/map
 Content-Type: application/json
@@ -110,7 +121,10 @@ Content-Type: application/json
 
 ### SET TEACHER ACTIVE
 PUT {{host}}/api/teachers/active/1001
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg0NzQ4NTIxLCJpYXQiOjE2ODQ3NDc5MjF9.CbFzzvf7b0-WxBh3rajwwlSu9nBv2zSRzm0VdF4kNLQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NTA0NDA5OSwiaWF0IjoxNjg1MDI5Njk5fQ.s5dDJGmm-k-MgXTca6lCpPBbNXjDkwlahPGIwhuNW1g
+### SET TEACHER INACTIVE
+PUT {{host}}/api/teachers/inactive/1001
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDQ1MDg2LCJpYXQiOjE2ODUwMzA2ODZ9.EP_eacthrK1f_zRWPXt0Ls-ac4uOj3y-9Xac4Ak-FSw
 ###
 DELETE {{host}}/api/teachers/51
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTY4MzM4OTkyOCwiaWF0IjoxNjgzMzg5NjI4fQ.rAmXfgGMusUkMM0btm8qn6evMZ6N-CHY00TWp6z86ls
@@ -132,30 +146,20 @@ POST   {{host}}/api/users/register
 Content-Type: application/json
 
 {
-  "username": "dc15",
-  "email": "dc15@gmail.com",
+  "username": "dc1014",
+  "email": "dc1014@gmail.com",
   "password": "12345",
-  "role" : "alumno"
+  "role" : "profesor"
 }
 
-### API LOGIN
-POST   {{host}}/api/users/login
-Content-Type: application/json
-
-{
-  "email": "dc6@gmail.com",
-  "password": "12345"
-}
 
 ### API PROFILE
 GET {{host}}/api/users/profile
 Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMTEsImV4cCI6MTY4MzY2NjE4MywiaWF0IjoxNjgzNjY1ODgzfQ.cGM_i2B_294Dm_HQPZUkn7z2XYOfJYfufQfAPjfU7m4
 
 ### TRAE TODOS LOS ALUMNOS
-GET {{host}}/api/alumno
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjgzNzA2MjIxLCJpYXQiOjE2ODM3MDU5MjF9.Vi7arufgWRMdCxhloE3GFCFT1_TSKTL5EBivz7ypl-s
-
-
+GET {{host}}/api/alumno?page=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDQ0MzQ1LCJpYXQiOjE2ODUwMjk5NDV9.ZZ21LCP1QNqGyZhjrIHNt6PDQ_LYeArfg1zSwio9sAk
 
 ### SET STUDENT INACTIVE
 PUT {{host}}/api/alumno/inactive/151
@@ -165,9 +169,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjox
 GET {{host}}/api/alumno/161
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NDg4MzE4MywiaWF0IjoxNjg0ODY4NzgzfQ.A_YbV4py04PQGrSpodU9ENRn2Yo_0ibFON1VVCLN18Y
 ### GET ALL TECAHERS ACTIVE
-GET {{host}}/api/teachers/active
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg0NzQ4NTIxLCJpYXQiOjE2ODQ3NDc5MjF9.CbFzzvf7b0-WxBh3rajwwlSu9nBv2zSRzm0VdF4kNLQ
-
+GET {{host}}/api/teachers/active?page=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NTA0NDA5OSwiaWF0IjoxNjg1MDI5Njk5fQ.s5dDJGmm-k-MgXTca6lCpPBbNXjDkwlahPGIwhuNW1g
 ### GET EXIST TEACHER STUDENT
 GET {{host}}/api/clase/exist
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4MzcxMzY0NiwiaWF0IjoxNjgzNzEzMzQ2fQ.NppmGBAQzrUFslP6KEcKIG8ROQIRgKSlw82ub7DjKdI
