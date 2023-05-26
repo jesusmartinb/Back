@@ -329,7 +329,7 @@ Header: TOKEN
  ### REQUEST
 Header: TOKEN
 
- ### RESPONSE 
+ 
 
 ### RESPONSE 
 ```json
@@ -709,4 +709,73 @@ Header: TOKEN
     }
   }
 
+```
+
+## Get all teachers (admin)
+GET  `https://teachers-groupb.herokuapp.com/api/teachers/all`
+
+### REQUEST
+Header: TOKEN
+
+## RESPONSE
+```json
+{
+  "page": 3,
+  "perPage": 4,
+  "totalItems": 17,
+  "totalPages": 5,
+  "results": [
+    {
+      "id": 9,
+      "cuota": "50.00",
+      "experiencia": "Experiencia en educación infantil",
+      "usuario_id": 1009,
+      "status": 1,
+      "nombre": "Sofía",
+      "apellidos": "Martínez Rodríguez",
+      "fecha_nacimiento": "1991-10-15T00:00:00.000Z",
+      "foto": "https://i.pravatar.cc/500?u=ernesto.alanizcorral@peticiones.online",
+      "direccion": "Calle Real 35",
+      "ciudad": "Sevilla",
+      "codigo_postal": 41001,
+      "longitud": "-5.994072",
+      "latitud": "37.386330",
+      "telefono": "955678901",
+      "datos_per": {
+        "id": 1009,
+        "username": "dc1009",
+        "email": "dc1009@gmail.com",
+        "role": "profesor"
+      }
+    }]}
+```
+
+
+## SET TEACHER INACTIVE (ADMIN)
+ PUT https://teachers-groupb.herokuapp.com/api/teachers/inactive/USUARIO_ID
+ 
+ ### REQUEST
+Header: TOKEN
+
+ 
+
+### RESPONSE 
+```json
+{
+  "id": 51,
+  "nombre": "Laura",
+  "apellidos": "González Sánchez",
+  "fecha_nacimiento": "1984-06-04T00:00:00.000Z",
+  "foto": "https://i.pravatar.cc/500?u=josemaria.zapatabravo@peticiones.online",
+  "direccion": "Calle Mayor 2",
+  "ciudad": "Bilbao",
+  "codigo_postal": 48002,
+  "longitud": "-2.934614",
+  "latitud": "43.262378",
+  "telefono": "944123456",
+  "cuota": "65",
+  "experiencia": "Experta en enseñanza de idiomas",
+  "usuario_id": 1016,
+  "status":1
+}
 ```
