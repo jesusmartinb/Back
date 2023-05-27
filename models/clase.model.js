@@ -8,7 +8,8 @@ const getAlumnosbyUser = (teacherId) => {
 
 const getAlumbyAlumnoId = (alumnoId) => {
     return db.query(
-        'SELECT * FROM alumno INNER JOIN datos_personales ON alumno.usuario_id = datos_personales.usuario_id WHERE alumno.id = ?',
+
+        'select * from (SELECT   a.status, a.estudia, d.nombre, d.apellidos,  d.fecha_nacimiento, d.foto, d.direccion, d.ciudad, d.codigo_postal, d.telefono,d.usuario_id FROM alumno as a INNER JOIN datos_personales as d ON a.usuario_id = d.usuario_id WHERE a.id = ?) as tabla INNER JOIN usuario ON usuario.id = tabla.usuario_id',
         [alumnoId]);
 }
 
