@@ -1,4 +1,4 @@
-const {  getById, getMap, getAllInactive, setActive, createProfesor, getByTeacherId, getAllActive, getByUserId, getAll, getUserbyId, setInactive } = require('../../models/teachers.model');
+const {  getById, getMap, getAllInactive, setActive, createProfesor, getByTeacherId, getAllActive, getByUserId, getAll, getUserbyId, setInactive, getMateriabyTeacher } = require('../../models/teachers.model');
 const {checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -53,6 +53,27 @@ router.get('/all', checkToken,checkRole('admin'),async (req, res) => {
 router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
     try {
         const [items] = await getAllActive();
+
+        const list = await Promise.all(items.map(async (profesor) => {
+            const [datos] = await getMateriabyTeacher(profesor.id);
+            const materias = []
+            if (datos.length !== 0) { 
+            
+                datos.forEach( mat => {
+                    const [materia,nivel] = mat.Materias.split(" ");
+                    materias.push({materia, nivel})
+            }
+
+            )
+            }
+            
+            profesor.materias = materias;
+            return profesor;
+        }));
+
+
+
+
         res.json(createPages(items,req)
            
         );

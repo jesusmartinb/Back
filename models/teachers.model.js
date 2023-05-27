@@ -4,6 +4,10 @@ const getMap = () => {
     return db.query('SELECT * FROM datos_personales INNER JOIN usuario ON datos_personales.usuario_id = usuario.id WHERE usuario.role= "profesor"');
 }
 
+const getMateriabyTeacher = (teacherId) => {
+    return db.query('select distinct concat(b.materia," ",a.nivel ) as Materias from nivel as a INNER JOIN (SELECT a.nivel_id, b.materia FROM clase as a INNER JOIN rama_conocimiento as b ON b.id = a.rama_co_id WHERE a.profesor_id= ?) as b ON a.id = b.nivel_id',[teacherId]);
+}
+
 const getAllInactive = () => {
     return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id where profesor.status=0');
 }
@@ -76,5 +80,5 @@ const deleteById = (teacherId)  => {
 module.exports = {
     getAllInactive, update, deleteById, getMap,getById,
     setActive, getByUserId, createProfesor, getByTeacherId, getAllActive, getAll, getUserbyId,
-    setInactive
+    setInactive, getMateriabyTeacher
 }

@@ -42,8 +42,9 @@ router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
 
        for(let result of results) {
         const [alumno] = await getAlumbyAlumnoId(result.alumno_id);
-        const {nombre, apellidos, foto} = alumno[0];
-        result.alumno = {nombre, apellidos, foto};
+        delete alumno[0].password;
+        
+        result.alumno = alumno[0];
     }
 
         res.json(results);
