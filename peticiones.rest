@@ -1,12 +1,12 @@
-@host = http://localhost:3000
-//@host = https://teachers-groupb.herokuapp.com
+//@host = http://localhost:3000
+@host = https://teachers-groupb.herokuapp.com
 
 ### API LOGIN  admin 1, alumno 6, profesor 12 
 POST   {{host}}/api/users/login
 Content-Type: application/json
 
 {
-  "email": "dc6@gmail.com",
+  "email": "dc1@gmail.com",
   "password": "12345"
 }
 
@@ -218,31 +218,27 @@ Content-Type: application/json
 
 ### post nivel
 POST {{host}}/api/clase/nivel
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NTA1OSwiaWF0IjoxNjgzOTY0NDU5fQ.pXqIguXgXQ6je_KJECJDmurqQRPyBt38rbd1RdfYuC8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MjgzNDM4LCJpYXQiOjE2ODUyNjkwMzh9.kkZGZEt0fgCLJK9qIyF-49XLeAYxVMwq6Pj1ly84gps
 Content-Type: application/json
 
 {
-  "usuario_id": 203,
-  "nivel": "alto"
+  "nivel": "prueba"
 }
 
 ###
 GET  {{host}}/api/clase/nivel
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NjI0MCwiaWF0IjoxNjgzOTY1NjQwfQ.XY00Pp14SSZpH7Ol0S43MZTdQc1nEW9HIoVBGyQtPTo
-
-### post nivel
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MjgzNDM4LCJpYXQiOjE2ODUyNjkwMzh9.kkZGZEt0fgCLJK9qIyF-49XLeAYxVMwq6Pj1ly84gps
+### post ramna
 POST {{host}}/api/clase/rama
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NjQwNSwiaWF0IjoxNjgzOTY1ODA1fQ.Y_NjnMFMQRSAgWCsYva41thjfdKv_mJqgSVB0jsUCXM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MjgzNDM4LCJpYXQiOjE2ODUyNjkwMzh9.kkZGZEt0fgCLJK9qIyF-49XLeAYxVMwq6Pj1ly84gps
 Content-Type: application/json
 
 {
-  "usuario_id": 204,
-  "materia": "Matematicas"
+  "materia": "prueba"
 }
 
 ###
 GET  {{host}}/api/clase/rama
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4Mzk2NTkyOSwiaWF0IjoxNjgzOTY1MzI5fQ.F8aWwyYwa7P_MyLXck6wtZJ2JaURuItFJVIMiwkjzbw
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MjgzNDM4LCJpYXQiOjE2ODUyNjkwMzh9.kkZGZEt0fgCLJK9qIyF-49XLeAYxVMwq6Pj1ly84gps
 ###
 GET  {{host}}/api/puntuacion

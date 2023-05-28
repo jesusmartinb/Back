@@ -18,14 +18,14 @@ const getTeacherByStudent = ({profesor_id, alumno_id}) => {
     [profesor_id, alumno_id]);
 }
 
-const CreateNivel = ({usuario_id, nivel}) =>{
-    return db.query('insert into nivel (usuario_id, nivel) values (?,?)',
-    [usuario_id, nivel]);
+const CreateNivel = ({nivel}) =>{
+    return db.query('insert into nivel (nivel) values (?)',
+    [nivel]);
 }
 
-const createRama = ({usuario_id, materia}) =>{
-    return db.query('insert into rama_conocimiento (usuario_id, materia) values (?,?)',
-    [usuario_id, materia]);
+const createRama = ({materia}) =>{
+    return db.query('insert into rama (descripcion) values (?)',
+    [materia]);
 }
 
 const getNivel = () => {
@@ -33,7 +33,7 @@ const getNivel = () => {
 }
 
 const getRama = () => {
-    return db.query('select * from rama_conocimiento');
+    return db.query('select * from rama');
 }
 
 

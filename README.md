@@ -571,12 +571,10 @@ Header: TOKEN
   {
     "id": 1,
     "nivel": "bajo",
-    "usuario_id": 201
   },
   {
     "id": 11,
     "nivel": "alto",
-    "usuario_id": 202
   }
 ]
 ```
@@ -591,12 +589,10 @@ Header: TOKEN
 [
   {
     "id": 1,
-    "usuario_id": 202,
     "materia": "literatura"
   },
   {
     "id": 11,
-    "usuario_id": 201,
     "materia": "Matematica"
   }
 ]
@@ -609,7 +605,6 @@ POST `https://teachers-groupb.herokuapp.com/api/clase/nivel`
 Header: TOKEN
 ```json
 {
-  "usuario_id": 202,
   "nivel": "alto"
 }
 ```
@@ -626,14 +621,13 @@ Header: TOKEN
 ```
 
 
-## create nivel (LOGEADO)
+## create rama (LOGEADO)
 POST `https://teachers-groupb.herokuapp.com/api/clase/rama`
 
 ### REQUEST
 Header: TOKEN
 ```json
 {
-  "usuario_id": 201,
   "materia": "Matematica"
 }
 
