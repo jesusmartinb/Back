@@ -55,19 +55,8 @@ router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
         const [items] = await getAllActive();
 
         const list = await Promise.all(items.map(async (profesor) => {
-            const [datos] = await getMateriabyTeacher(profesor.id);
-            const materias = []
-            if (datos.length !== 0) { 
-            
-                datos.forEach( mat => {
-                    const [materia,nivel] = mat.Materias.split(" ");
-                    materias.push({materia, nivel})
-            }
-
-            )
-            }
-            
-            profesor.materias = materias;
+            const [datos] = await getMateriabyTeacher(profesor.usuario_id);
+            profesor.materias = datos;
             return profesor;
         }));
 

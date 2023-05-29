@@ -43,6 +43,9 @@ router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
 
        for(let result of results) {
         const [alumno] = await getAlumbyAlumnoId(result.alumno_id);
+        if (alumno.length===0) {
+            return res.json({ fatal: 'No existe un alumno con ID:'+result.alumno_id});
+        }
         delete alumno[0].password;
         
         result.alumno = alumno[0];

@@ -5,7 +5,7 @@ const getMap = () => {
 }
 
 const getMateriabyTeacher = (teacherId) => {
-    return db.query('select distinct concat(b.materia," ",a.nivel ) as Materias from nivel as a INNER JOIN (SELECT a.nivel_id, b.materia FROM clase as a INNER JOIN rama_conocimiento as b ON b.id = a.rama_co_id WHERE a.profesor_id= ?) as b ON a.id = b.nivel_id',[teacherId]);
+    return db.query('select * from nivel as a INNER JOIN (SELECT a.usuario_id, a.materia_id, a.nivel_id, b.descripcion as rama FROM rama_conocimiento as a INNER JOIN rama as b ON b.id= a.materia_id where a.usuario_id=?) as b ON b.nivel_id = a.id',[teacherId]);
 }
 
 const getAllInactive = () => {
