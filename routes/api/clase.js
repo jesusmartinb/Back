@@ -1,4 +1,5 @@
-const {  getAlumnosbyUser, getAlumbyAlumnoId, getTeacherByStudent, CreateNivel, getNivel, getRama, createRama } = require('../../models/clase.model');
+const { Router } = require('express');
+const {  getAlumnosbyUser, getAlumbyAlumnoId, getTeacherByStudent, CreateNivel, getNivel, getRama, createRama, creteClase, createRamaco } = require('../../models/clase.model');
 const { checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -53,6 +54,23 @@ router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
     }
 })
 
+router.post('/',checkToken, async(req, res) => {
+    try {
+        const [result] = await creteClase(req.body);
+        res.json(result); 
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
+
+router.post('/ramaco',checkToken, async(req, res) => {
+    try {
+        const [result] = await createRamaco(req.body);
+        res.json(result); 
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
 
 
 router.post('/nivel', checkToken, async( req,res) => {
