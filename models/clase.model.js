@@ -23,9 +23,19 @@ const CreateNivel = ({nivel}) =>{
     [nivel]);
 }
 
+const creteClase = ({profesor_id, alumno_id, rama_co_id}) => {
+    return db.query('insert into clase (profesor_id, alumno_id, rama_co_id) values (?,?,?)',
+    [profesor_id, alumno_id, rama_co_id]);
+}
+
 const createRama = ({materia}) =>{
     return db.query('insert into rama (descripcion) values (?)',
     [materia]);
+}
+
+const createRamaco = ({usuario_id, materia_id, nivel_id}) => {
+    return db.query('insert into rama_conocimiento (usuario_id, materia_id, nivel_id) values (?,?,?)',
+    [usuario_id, materia_id, nivel_id]);
 }
 
 const getNivel = () => {
@@ -39,5 +49,5 @@ const getRama = () => {
 
 module.exports = {
     getAlumnosbyUser,getAlumbyAlumnoId, getTeacherByStudent,
-    getNivel, CreateNivel, createRama, getRama
+    getNivel, CreateNivel, createRama, getRama, creteClase, createRamaco
 }

@@ -1,4 +1,5 @@
-const {  getAlumnosbyUser, getAlumbyAlumnoId, getTeacherByStudent, CreateNivel, getNivel, getRama, createRama } = require('../../models/clase.model');
+const { Router } = require('express');
+const {  getAlumnosbyUser, getAlumbyAlumnoId, getTeacherByStudent, CreateNivel, getNivel, getRama, createRama, creteClase, createRamaco } = require('../../models/clase.model');
 const { checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -42,6 +43,9 @@ router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
 
        for(let result of results) {
         const [alumno] = await getAlumbyAlumnoId(result.alumno_id);
+        if (alumno.length===0) {
+            return res.json({ fatal: 'No existe un alumno con ID:'+result.alumno_id});
+        }
         delete alumno[0].password;
         
         result.alumno = alumno[0];
@@ -53,6 +57,23 @@ router.get('/:userId',checkToken,checkRole('profesor'), async (req, res) => {
     }
 })
 
+router.post('/',checkToken, async(req, res) => {
+    try {
+        const [result] = await creteClase(req.body);
+        res.json(result); 
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
+
+router.post('/ramaco',checkToken, async(req, res) => {
+    try {
+        const [result] = await createRamaco(req.body);
+        res.json(result); 
+    } catch (error) {
+        res.json({fatal: error.message});
+    }
+})
 
 
 router.post('/nivel', checkToken, async( req,res) => {

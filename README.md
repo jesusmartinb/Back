@@ -773,3 +773,47 @@ Header: TOKEN
   "status":1
 }
 ```
+## CREATE CLASE (LOGUEADO)
+POST  https://teachers-groupb.herokuapp.com/api/clase/
+### REQUEST
+Header: TOKEN
+```json
+{
+  "profesor_id": 1,
+  "alumno_id" :1,
+  "rama_co_id": 1
+}
+```
+### RESPONSE
+```json
+{
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 71,
+  "info": "",
+  "serverStatus": 2,
+  "warningStatus": 0
+}
+```
+## CREATE RAMA_CONOCIMIENTO (LOGUEADO)
+POST  https://teachers-groupb.herokuapp.com/api/clase/ramaco/
+### REQUEST
+Header: TOKEN
+```json
+{
+  "usuario_id": 1,
+  "materia_id" :1,
+  "nivel_id": 1
+}
+```
+### RESPONSE
+```json
+{
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 71,
+  "info": "",
+  "serverStatus": 2,
+  "warningStatus": 0
+}
+```
