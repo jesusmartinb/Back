@@ -13,7 +13,7 @@ const getByUserId = (userId) => {
 
 
 const getAll = () => {
-    return  db.query('select *  from alumno  INNER JOIN datos_personales ON  datos_personales.usuario_id = alumno.usuario_id');
+    return  db.query('select * from datos_personales as d INNER JOIN (SELECT a.estudia, a.usuario_id as usr_id, a.status, b.username, b.email  FROM alumno as a INNER JOIN usuario as b ON a.usuario_id=b.id) as c ON d.usuario_id = c.usr_id');
 }
 
 const setInactive = (stundentId) => {

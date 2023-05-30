@@ -9,7 +9,7 @@ const getMateriabyTeacher = (teacherId) => {
 }
 
 const getAllInactive = () => {
-    return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id where profesor.status=0');
+    return  db.query('select * from datos_personales as d INNER JOIN (SELECT a.experiencia,a.cuota, a.usuario_id as usr_id, a.status, b.username, b.email  FROM profesor as a INNER JOIN usuario as b ON a.usuario_id=b.id where a.status=0) as c ON d.usuario_id = c.usr_id');
 }
 
 const getAllActive = () => {

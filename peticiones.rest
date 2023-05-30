@@ -1,12 +1,12 @@
-@host = http://localhost:3000
-//@host = https://teachers-groupb.herokuapp.com
+//@host = http://localhost:3000
+@host = https://teachers-groupb.herokuapp.com
 
 ### API LOGIN  admin 1, alumno 6, profesor 12 
 POST   {{host}}/api/users/login
 Content-Type: application/json
 
 {
-  "email": "dc6@gmail.com",
+  "email": "dc1@gmail.com",
   "password": "12345"
 }
 ### create clase
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ### Get all teachers
 GET  {{host}}/api/teachers/all?page=2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDQ1NDY3LCJpYXQiOjE2ODUwMzEwNjd9.DHSGzn1iXOn6S6T3Cx1HzTLNxXRFgVkViGs-L0xOwHM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1NDY2NzMxLCJpYXQiOjE2ODU0NTIzMzF9.fgV14yrGct_2kFh8fjOi-LW3styFGzJTacCp86sgG1Y
 ### GET teacher by alumno
 GET  {{host}}/api/alumno/teachers/151
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NTM4NDY1NCwiaWF0IjoxNjg1MzcwMjU0fQ.-beZr5s0-LPZi0DojucS-FhHwGJw3JjIG7PsEz1XHs8
@@ -46,7 +46,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjox
 GET {{host}}/api/puntuacion
 ### GET INACTIVE
 GET {{host}}/api/teachers?page=2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDQ0MzQ1LCJpYXQiOjE2ODUwMjk5NDV9.ZZ21LCP1QNqGyZhjrIHNt6PDQ_LYeArfg1zSwio9sAk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1NDY3MTkzLCJpYXQiOjE2ODU0NTI3OTN9.sDBRDPrFsM1-6w19emo23xrOIEVruTwlFp8VuylW2fw
+
 ### GET TEACHER ADDRESS
 POST {{host}}/api/teachers/map
 Content-Type: application/json
@@ -180,8 +181,7 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDAyLCJleHA
 
 ### TRAE TODOS LOS ALUMNOS
 GET {{host}}/api/alumno?page=2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MDQ0MzQ1LCJpYXQiOjE2ODUwMjk5NDV9.ZZ21LCP1QNqGyZhjrIHNt6PDQ_LYeArfg1zSwio9sAk
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1NDY2Mjc4LCJpYXQiOjE2ODU0NTE4Nzh9.ZhrelBp0w7hdZYzNlW61vwFDKZ6qyiqdxhY3TluoS9U
 ### SET STUDENT INACTIVE
 PUT {{host}}/api/alumno/inactive/151
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjgzNzA3MzI3LCJpYXQiOjE2ODM3MDcwMjd9.oCs7rpsb3OOTqnZ6YvrCPHvcMuyFVIuoCkV6ylJR-i4
