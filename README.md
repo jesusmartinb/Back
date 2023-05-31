@@ -259,7 +259,7 @@ GET `https://teachers-groupb.herokuapp.com/api/puntuacion`
   ```
 
 ## SET STUDENT INACTIVE (ADMIN)
-PUT `https://teachers-groupb.herokuapp.com/api/alumno/inactiv/USUARIO_ID`
+PUT `https://teachers-groupb.herokuapp.com/api/alumno/inactive/USUARIO_ID`
 
 ### REQUEST
 Header: TOKEN
