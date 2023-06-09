@@ -1,4 +1,4 @@
-const {  getById, getMap, getAllInactive, setActive, createProfesor, getByTeacherId, getAllActive, getByUserId, getAll, getUserbyId, setInactive, getMateriabyTeacher } = require('../../models/teachers.model');
+const {  getById, getMap, getAllInactive, setActive, createProfesor, getByTeacherId, getAllActive, getByUserId, getAll, getUserbyId, setInactive, getMateriabyTeacher, getPromedio } = require('../../models/teachers.model');
 const {checkToken, checkRole } = require('../../utils/middlewares');
 
 const router = require('express').Router();
@@ -14,7 +14,7 @@ router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     try {
         const [items] = await getAllInactive();
 
-        res.json(createPages(items,req));
+        res.json(createPages(items,req, 20));
     } catch (error) {
         res.json({fatal: error.message});
     }
@@ -40,7 +40,7 @@ router.get('/all', checkToken,checkRole('admin'),async (req, res) => {
         if (errors.length > 0) {
             res.json({ errors });
           } else {
-           res.json(createPages(result,req));
+           res.json(createPages(result,req,20));
           }
        
 
@@ -56,14 +56,21 @@ router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
 
         const list = await Promise.all(items.map(async (profesor) => {
             const [datos] = await getMateriabyTeacher(profesor.usuario_id);
+            const [promedio] = await getPromedio(profesor.id)
             profesor.materias = datos;
+            if (promedio[0] !== undefined) {
+              
+                profesor.promedio = promedio[0].avg;
+            } else {
+                profesor.promedio = [];
+            }
             return profesor;
         }));
 
 
 
 
-        res.json(createPages(items,req)
+        res.json(createPages(items,req,4)
            
         );
     } catch (error) {

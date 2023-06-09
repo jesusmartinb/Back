@@ -1,5 +1,5 @@
 const { geocoder } = require('../../config/geocoder');
-const { createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId, getAlumnoByUserId, getTeachersbyAlum, getDatosbyUserId } = require('../../models/alumno.model');
+const { createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId, getAlumnoByUserId, getTeachersbyAlum, getDatosbyUserId, setActive } = require('../../models/alumno.model');
 const { createDatos, getById } = require('../../models/teachers.model');
 const { getByID } = require('../../models/user.model');
 const { createPages } = require('../../utils/helpers');
@@ -10,7 +10,7 @@ const router = require('express').Router();
 router.get('/', checkToken,checkRole('admin'),async (req, res) => {
     try {
         const [items] = await getAll();
-        res.json(createPages(items,req));
+        res.json(createPages(items,req,20));
     } catch (error) {
         res.json({fatal: error.message});
     }
@@ -76,6 +76,18 @@ router.put('/inactive/:userId',checkToken,checkRole('admin'), async (req, res) =
         const {userId} = req.params;
         await setInactive(userId);
         const [student] = await getByStudentId(userId)
+        res.json(student[0]);
+        } catch (error) {
+        res.json({fatal: error.message});
+        }
+})
+
+router.put('/active/:userId',checkToken,checkRole('admin'), async (req, res) => {
+    try {
+        const {userId} = req.params;
+        await setActive(userId);
+        const [student] = await getByStudentId(userId)
+        console.log("paso por aca");
         res.json(student[0]);
         } catch (error) {
         res.json({fatal: error.message});

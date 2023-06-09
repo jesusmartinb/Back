@@ -8,12 +8,18 @@ const getMateriabyTeacher = (teacherId) => {
     return db.query('select * from nivel as a INNER JOIN (SELECT a.usuario_id, a.materia_id, a.nivel_id, b.descripcion as rama FROM rama_conocimiento as a INNER JOIN rama as b ON b.id= a.materia_id where a.usuario_id=?) as b ON b.nivel_id = a.id',[teacherId]);
 }
 
+const getPromedio = (teacherId) => {
+    return db.query('SELECT avg(puntuacion) as avg FROM puntuacion where id_profesor = ? group by id_profesor ',[teacherId])
+
+}
+
+
 const getAllInactive = () => {
     return  db.query('select * from datos_personales as d INNER JOIN (SELECT a.experiencia,a.cuota, a.usuario_id as usr_id, a.status, b.username, b.email  FROM profesor as a INNER JOIN usuario as b ON a.usuario_id=b.id where a.status=0) as c ON d.usuario_id = c.usr_id');
 }
 
 const getAllActive = () => {
-    return  db.query('select *  from profesor  INNER JOIN datos_personales ON  datos_personales.usuario_id = profesor.usuario_id where profesor.status=1');
+    return  db.query('select p.id as id, p.cuota, p.experiencia, d.usuario_id, p.status, d.nombre, d.apellidos, d.fecha_nacimiento, d.foto, d.direccion, d.ciudad, d.codigo_postal, d.longitud, d.latitud, d.telefono  from profesor as p INNER JOIN datos_personales as d ON  d.usuario_id = p.usuario_id where p.status=1');
 }
 
 const getAll = () => {
@@ -80,5 +86,5 @@ const deleteById = (teacherId)  => {
 module.exports = {
     getAllInactive, update, deleteById, getMap,getById,
     setActive, getByUserId, createProfesor, getByTeacherId, getAllActive, getAll, getUserbyId,
-    setInactive, getMateriabyTeacher
+    setInactive, getMateriabyTeacher, getPromedio
 }

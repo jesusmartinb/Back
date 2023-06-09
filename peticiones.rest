@@ -1,14 +1,18 @@
-//@host = http://localhost:3000
-@host = https://teachers-groupb.herokuapp.com
+@host = http://localhost:3000
+//@host = https://teachers-groupb.herokuapp.com
 
 ### API LOGIN  admin 1, alumno 6, profesor 12 
 POST   {{host}}/api/users/login
 Content-Type: application/json
 
 {
-  "email": "dc1@gmail.com",
+  "email": "dc6@gmail.com",
   "password": "12345"
 }
+### SET STUDENT ACTIVE
+PUT {{host}}/api/alumno/active/151
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg2MjM5Mjc5LCJpYXQiOjE2ODYyMjQ4Nzl9.SKbdm5QB5LmTbOxHmlqCEGPiw4K4foZaDMHBH7HqJfc
+
 ### create clase
 POST   {{host}}/api/clase/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MzY2OTgzLCJpYXQiOjE2ODUzNTI1ODN9.S2tAV2UUcfmBwcmXkxfbIgVKQAWKVo41I4fN0ebVosI
@@ -34,8 +38,8 @@ Content-Type: application/json
 
 
 ### Get all teachers
-GET  {{host}}/api/teachers/all?page=2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1NDY2NzMxLCJpYXQiOjE2ODU0NTIzMzF9.fgV14yrGct_2kFh8fjOi-LW3styFGzJTacCp86sgG1Y
+GET  {{host}}/api/teachers/all?page=1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1ODM2NzExLCJpYXQiOjE2ODU4MjIzMTF9.Fy5UXeSrbmdR7XsRYVbDMPvVnDopW27qSHWoFCteTEU
 ### GET teacher by alumno
 GET  {{host}}/api/alumno/teachers/151
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NTM4NDY1NCwiaWF0IjoxNjg1MzcwMjU0fQ.-beZr5s0-LPZi0DojucS-FhHwGJw3JjIG7PsEz1XHs8
@@ -63,8 +67,9 @@ GET {{host}}/api/teachers/6
 GET {{host}}/api/teachers/user/1002
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4NDg4NDMwNSwiaWF0IjoxNjg0ODY5OTA1fQ.l7KABd9nb6VGJSScwP3RSR2O-5DyJwy3wv4-JqIlY80
 ### GET ALUMNOS BY USUAIO_ID
-GET {{host}}/api/clase/1001
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4NTM4MzE4MywiaWF0IjoxNjg1MzY4NzgzfQ.kM8e_76q5o6zGPnN3YmWYgxoxhUI17iOu1pOcpxmftc
+GET {{host}}/api/clase/1002
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4NTU0MjAyNywiaWF0IjoxNjg1NTI3NjI3fQ.Le-vvaQQrmcl5eBuUCQCGqBg5nubFA63lDbcyJ4lx6M
+
 ###
 POST {{host}}/api/teachers
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDEsImV4cCI6MTY4MzgwMzE3NCwiaWF0IjoxNjgzODAyNTc0fQ.k3gNyms5okLaQPzbF_S3r-TiYgK0PyO8q7TezPfso3I
@@ -190,9 +195,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjox
 GET {{host}}/api/alumno/161
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NDg4MzE4MywiaWF0IjoxNjg0ODY4NzgzfQ.A_YbV4py04PQGrSpodU9ENRn2Yo_0ibFON1VVCLN18Y
 ### GET ALL TECAHERS ACTIVE
-GET {{host}}/api/teachers/active?page=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NTM4NDk0NiwiaWF0IjoxNjg1MzcwNTQ2fQ.y6YDla3Uh0hcRVCgP8LXVwX2vrjvEVcDE885rAP407A
-
+GET {{host}}/api/teachers/active?page=3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NjMyMDQ3NywiaWF0IjoxNjg2MzA2MDc3fQ.k61MWUDZOEE-Bqh8M14pKAhnqOi92c7TYmYdSUZ76tY
 ### GET EXIST TEACHER STUDENT
 GET {{host}}/api/clase/exist
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjEsImV4cCI6MTY4NTM2ODIwNiwiaWF0IjoxNjg1MzUzODA2fQ.FvXxj89Fj2wLGDeSY0svqqNdODYxLaGjH-fztegUHdk

@@ -23,6 +23,13 @@ const setInactive = (stundentId) => {
     )
 }
 
+const setActive = (stundentId) => {
+    return db.query(
+        'update alumno set status="1" where usuario_id = ?',
+        [stundentId]
+    )
+}
+
 const getByStudentId = (studentId) => {
     return db.query(
         'select * from datos_personales INNER JOIN alumno  ON datos_personales.usuario_id = alumno.usuario_id WHERE alumno.usuario_id= ?',[studentId]);
@@ -52,6 +59,6 @@ const getDatosbyUserId = (usuario_id) => {
 
 module.exports = {
     createAlumno, getAll, setInactive, getByStudentId, getByUserId, getUserByAlumnoId,
-    getAlumnoByUserId,getTeachersbyAlum, getDatosbyUserId
+    getAlumnoByUserId,getTeachersbyAlum, getDatosbyUserId, setActive
     
 }
