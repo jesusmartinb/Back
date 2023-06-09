@@ -20,7 +20,7 @@ router.post('/enviarMensaje',checkToken, async (req, res) => {
    
 });
 
-router.get('/',checkToken, async (req, res) => {
+router.post('/',checkToken, async (req, res) => {
     try {
         const [result] = await getMsg(req.body);
         

@@ -12,9 +12,8 @@ const createToken = (user) => {
 
 }
 
-const createPages = (items, req) => {
+const createPages = (items, req, perPage) => {
     let page = req.query.page || 1;
-    const perPage = 4; // número de elementos por página
    // let page = req.query.page || 1; // página solicitada (por defecto es la primera)
     page = parseInt(page); 
     const startIndex = (page - 1) * perPage; // índice de inicio de la página
