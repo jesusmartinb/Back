@@ -268,3 +268,7 @@ GET  {{host}}/api/clase/rama
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5MSwiZXhwIjoxNjg1MjgzNDM4LCJpYXQiOjE2ODUyNjkwMzh9.kkZGZEt0fgCLJK9qIyF-49XLeAYxVMwq6Pj1ly84gps
 ###
 GET  {{host}}/api/puntuacion
+
+###
+PUT {{host}}/api/personal/upload
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNTEsImV4cCI6MTY4NjM0MDUzNywiaWF0IjoxNjg2MzI2MTM3fQ.SBT3IuMWgeTcHyJuXa3SETqEZzxdPoimGEv1h9DuuXo
