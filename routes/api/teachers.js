@@ -57,6 +57,8 @@ router.get('/active', checkToken,checkRole('alumno'),async (req, res) => {
         const list = await Promise.all(items.map(async (profesor) => {
             const [datos] = await getMateriabyTeacher(profesor.usuario_id);
             const [promedio] = await getPromedio(profesor.id)
+            const [usuario] = await getUserbyId(profesor.usuario_id);
+            profesor.email = usuario[0].email;
             profesor.materias = datos;
             if (promedio[0] !== undefined) {
               
